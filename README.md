@@ -1,6 +1,6 @@
 # E-commerce Skeleton Project
 
-A complete, production-ready e-commerce infrastructure skeleton built with AWS CDK, designed for modern web applications with security, scalability, and maintainability in mind.
+A complete, production-ready e-commerce infrastructure skeleton built with AWS CDK, designed for modern web applications with security, scalability, and maintainability in mind. This is a monorepo that can be turned very quickly into microservices architecture.
 
 ## Architecture Overview
 
@@ -35,10 +35,8 @@ e-commerce/
 │       │   ├── functions/            # Lambda function handlers (users, products, orders)
 │       │   ├── layers/               # Shared Lambda layer code
 │       │   └── test-utils/           # Testing utilities for Lambdas
-│       ├── graphql/                  # GraphQL schema definition
-│       ├── test/                     # Infrastructure & integration tests
-│       ├── deploy.sh                 # Deployment script
-│       └── test-graphql.sh           # API testing script
+│       ├── scripts/                  # Deployment & testing scripts
+│       └── test/                     # Infrastructure & integration tests
 ├── root-lib/                         # Shared business logic & utilities
 │   ├── base/                         # Core utilities (string, number, object utils)
 │   ├── user/                         # User domain schemas & types
@@ -94,7 +92,7 @@ pnpm install
 
 ```bash
 cd root-infra/cdk
-./deploy.sh
+./scripts/deploy.sh
 ```
 
 This will:
@@ -110,7 +108,7 @@ The deployment will output the GraphQL API URL and API Key. You can test the end
 
 ```bash
 # Test all GraphQL endpoints
-./test-graphql.sh <graphql-url> <api-key>
+./scripts/test-graphql.sh <graphql-url> <api-key>
 
 # Or test individual queries
 curl -X POST https://your-graphql-url/graphql \
@@ -312,16 +310,16 @@ pnpm install
 
 # Deploy infrastructure
 cd root-infra/cdk
-./deploy.sh
+./scripts/deploy.sh
 
 # Deploy to production
-./deploy.sh production
+./scripts/deploy.sh production
 
 # Test GraphQL API
-./test-graphql.sh <graphql-url> <api-key>
+./scripts/test-graphql.sh <graphql-url> <api-key>
 
 # View stack outputs
-./get-outputs.sh
+./scripts/get-outputs.sh
 
 # Destroy infrastructure
 cdk destroy

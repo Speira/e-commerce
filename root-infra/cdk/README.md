@@ -40,12 +40,14 @@ root-infra/cdk/
 │   ├── layers/
 │   │   └── nodejs/           # Shared utilities layer with tests
 │   └── test-utils/           # Shared test utilities
-├── test/                     # Infrastructure & integration tests
-├── graphql/
-│   └── schema.graphql        # GraphQL schema
-├── jest.config.js            # Root test configuration
-├── package.json
-└── tsconfig.json
+├── scripts/                  # Deployment & testing scripts
+│   ├── cdk-wrapper.sh        # CDK wrapper with custom settings
+│   ├── cleanup.sh            # Cleanup temporary files
+│   ├── deploy.sh             # Full deployment pipeline
+│   ├── get-outputs.sh        # Extract deployment outputs
+│   ├── test-api.sh           # REST API testing
+│   └── test-graphql.sh       # GraphQL API testing
+└── test/                     # Infrastructure & integration tests
 ```
 
 ## Quick Start
@@ -122,6 +124,87 @@ pnpm run test:watch
 ```
 
 See [test/README.md](test/README.md) for detailed testing documentation.
+
+## Scripts
+
+The `scripts/` directory contains helpful shell scripts for deployment and testing:
+
+### cdk-wrapper.sh
+
+Wraps CDK commands with custom settings (used by all package.json CDK commands):
+
+- Sets local temp directory to avoid polluting system `/tmp`
+- Configures CDK output directory
+- Used internally by package.json scripts
+
+### deploy.sh
+
+Full deployment pipeline with validation:
+
+```bash
+./scripts/deploy.sh              # Deploy to development
+./scripts/deploy.sh production   # Deploy to production
+```
+
+Features:
+
+- Checks AWS CLI configuration
+- Installs dependencies
+- Builds Lambda functions
+- Deploys infrastructure
+- Displays deployment outputs
+
+### cleanup.sh
+
+Comprehensive cleanup script:
+
+```bash
+./scripts/cleanup.sh
+```
+
+Cleans:
+
+- CDK temporary files and cache
+- Lambda build artifacts
+- Node modules (optional)
+- Displays freed disk space
+
+### get-outputs.sh
+
+Extract and display CDK stack outputs:
+
+```bash
+./scripts/get-outputs.sh
+```
+
+Displays:
+
+- GraphQL API URL and API Key
+- DynamoDB table names
+- S3 bucket names
+- Cognito User Pool details
+
+### test-graphql.sh
+
+Test GraphQL API endpoints:
+
+```bash
+./scripts/test-graphql.sh <graphql-url> <api-key>
+```
+
+Tests all CRUD operations for:
+
+- Products
+- Users
+- Orders
+
+### test-api.sh
+
+Test REST API endpoints (if applicable):
+
+```bash
+./scripts/test-api.sh <api-url>
+```
 
 ## Lambda Functions
 
@@ -222,7 +305,7 @@ cdk deploy --context environment=production
 
 ### Schema
 
-The GraphQL schema is defined in `graphql/schema.graphql` and deployed to AWS AppSync.
+The GraphQL schema is defined in the `@speira/e-commerce-schema` package (`root-schema/graphql/schema.graphql`) and deployed to AWS AppSync.
 
 ### Resolvers
 
@@ -237,10 +320,10 @@ All resolvers use Lambda functions with direct mapping:
 
 ```bash
 # Test GraphQL queries
-./test-graphql.sh
+./scripts/test-graphql.sh
 
 # Test REST endpoints
-./test-api.sh
+./scripts/test-api.sh
 ```
 
 ## Database
@@ -308,9 +391,9 @@ pnpm logs                  # Tail lambda logs
 1. **Make changes** to lambda code or infrastructure
 2. **Run tests** locally: `pnpm test`
 3. **Build**: `pnpm build` and `pnpm run build:lambda`
-4. **Deploy to dev**: `pnpm deploy`
-5. **Test deployed API**: `./test-graphql.sh`
-6. **Deploy to prod**: `pnpm run deploy:prod`
+4. **Deploy to dev**: `pnpm deploy` or `./scripts/deploy.sh`
+5. **Test deployed API**: `./scripts/test-graphql.sh`
+6. **Deploy to prod**: `pnpm run deploy:prod` or `./scripts/deploy.sh production`
 
 ## Documentation
 

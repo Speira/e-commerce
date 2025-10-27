@@ -4,6 +4,8 @@ import * as cognito from 'aws-cdk-lib/aws-cognito';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as logs from 'aws-cdk-lib/aws-logs';
 import { Construct } from 'constructs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 export interface AppSyncApiProps {
   readonly productFunction: lambda.IFunction;
@@ -17,6 +19,12 @@ export class AppSyncApi extends Construct {
 
   constructor(scope: Construct, id: string, props: AppSyncApiProps) {
     super(scope, id);
+
+    // Resolve the schema file path from the schema package
+    const schemaPackagePath = dirname(
+      fileURLToPath(import.meta.resolve('@speira/e-commerce-schema')),
+    );
+    const schemaFilePath = join(schemaPackagePath, 'graphql/schema.graphql');
 
     // AppSync GraphQL API with Cognito authentication
     const authConfig: appsync.AuthorizationConfig = props.userPool
@@ -47,7 +55,7 @@ export class AppSyncApi extends Construct {
 
     this.graphqlApi = new appsync.GraphqlApi(this, 'EcommerceGraphQL', {
       name: 'Ecommerce GraphQL API',
-      definition: appsync.Definition.fromFile('graphql/schema.graphql'),
+      definition: appsync.Definition.fromFile(schemaFilePath),
       authorizationConfig: authConfig,
       xrayEnabled: true,
       logConfig: {

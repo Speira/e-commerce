@@ -11,7 +11,7 @@ process.env['PRODUCT_BUCKET'] = 'test-product-bucket';
 process.env['USER_BUCKET'] = 'test-user-bucket';
 process.env['NODE_ENV'] = 'test';
 
-// Set CDK to use local temp directory (like cdk-wrapper.sh does)
+// Set CDK to use local temp directory (like scripts/cdk-wrapper.sh does)
 const projectRoot = path.resolve(__dirname, '..');
 process.env.TMPDIR = path.join(projectRoot, '.tmp');
 process.env['CDK_OUTDIR'] = path.join(projectRoot, 'cdk.out');

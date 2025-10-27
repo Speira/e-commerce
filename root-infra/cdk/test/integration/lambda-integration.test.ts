@@ -1,8 +1,9 @@
+import { GraphQLEvent, Order, Product, User } from '@speira/e-commerce-schema';
+
 import { handler as ordersHandler } from '~/lambda/functions/orders/src/index';
 import { handler as productsHandler } from '~/lambda/functions/products/src/index';
 import { LambdaResponse } from '~/lambda/functions/users/dist/types';
 import { handler as usersHandler } from '~/lambda/functions/users/src/index';
-import { GraphQLEvent, Order, Product, User } from '@speira/e-commerce-schema';
 
 // Mock the database layer with in-memory storage for integration tests
 const mockDatabase = new Map<string, unknown>();

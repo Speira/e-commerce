@@ -1,0 +1,25 @@
+{
+  "name": "@speira/e-commerce-lib",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "test": "jest --config=jest.config.cjs",
+    "test:coverage": "jest --config=jest.config.cjs --coverage",
+    "test:watch": "jest --config=jest.config.cjs --watch"
+  },
+  "dependencies": {
+    "@speira/e-commerce-schema": "workspace:*",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.4"
+  }
+}

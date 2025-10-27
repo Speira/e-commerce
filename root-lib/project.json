@@ -1,0 +1,66 @@
+{
+  "name": "@speira/e-commerce-lib",
+  "root": "root-lib",
+  "sourceRoot": "root-lib",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-lib"
+      },
+      "outputs": []
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --config ../eslint.config.mjs",
+        "cwd": "root-lib"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --fix --config ../eslint.config.mjs",
+        "cwd": "root-lib"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-lib"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --config=jest.config.cjs",
+        "cwd": "root-lib"
+      }
+    },
+    "test:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --config=jest.config.cjs --watch",
+        "cwd": "root-lib"
+      }
+    },
+    "test:coverage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --config=jest.config.cjs --coverage",
+        "cwd": "root-lib"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist",
+        "cwd": "root-lib"
+      }
+    }
+  },
+  "tags": ["library", "shared", "types"]
+}

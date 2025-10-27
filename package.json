@@ -12,7 +12,7 @@
     "lambda",
     "serverless"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "author": "Speira",
   "type": "module",
   "scripts": {

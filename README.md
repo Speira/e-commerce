@@ -27,30 +27,53 @@ This project provides a comprehensive e-commerce backend infrastructure with the
 
 ```
 e-commerce/
-├── infra/                             # Infrastructure as Code
-│   ├── cdk/                          # AWS CDK Infrastructure
-│   │   ├── bin/                      # CDK app entry points
-│   │   ├── lib/                      # CDK stack definitions
-│   │   ├── lambda/                   # Lambda functions & layers
-│   │   ├── graphql/                  # GraphQL schema & resolvers
-│   │   ├── deploy.sh                 # Deployment script
-│   │   └── test-graphql.sh           # API testing
-│   ├── terraform/                    # Future Terraform configs
-│   ├── kubernetes/                   # Future K8s manifests
-│   ├── docker/                       # Future Docker configs
-│   └── README.md                     # Infrastructure docs
-├── frontend/                         # Future frontend application
-├── .vscode/                          # VS Code configuration
-├── package.json                      # Root dependencies
-└── README.md                         # This file
+├── root-infra/                       # Infrastructure as code
+│   └── cdk/                          # AWS CDK Infrastructure
+│       ├── bin/                      # CDK app entry points
+│       ├── stacks/                   # CDK stack definitions & constructs
+│       ├── lambda/                   # Lambda functions & layers
+│       │   ├── functions/            # Lambda function handlers (users, products, orders)
+│       │   ├── layers/               # Shared Lambda layer code
+│       │   └── test-utils/           # Testing utilities for Lambdas
+│       ├── graphql/                  # GraphQL schema definition
+│       ├── test/                     # Infrastructure & integration tests
+│       ├── deploy.sh                 # Deployment script
+│       └── test-graphql.sh           # API testing script
+├── root-lib/                         # Shared business logic & utilities
+│   ├── base/                         # Core utilities (string, number, object utils)
+│   ├── user/                         # User domain schemas & types
+│   ├── product/                      # Product domain schemas & types
+│   └── order/                        # Order domain schemas & types
+├── root-schema/                      # GraphQL schema & code generation
+│   ├── graphql/                      # GraphQL schema files
+│   ├── generated/                    # Auto-generated types & resolvers
+│   └── codegen/                      # GraphQL codegen configuration
+└── root-ui/                          # Frontend applications
+    ├── admin/                        # Admin dashboard (Vite + React + TanStack Router)
+    └── web/                          # Customer-facing web app (Next.js)
 ```
+
+## Monorepo Architecture
+
+This project uses **Nx** and **pnpm workspaces** for efficient monorepo management:
+
+- **Nx** - Build system with intelligent caching and task orchestration
+- **pnpm** - Fast, disk-efficient package manager
+- **Workspaces** - Shared dependencies and type-safe imports across packages
+
+### Key Benefits
+
+- 🚀 **Fast builds** - Nx caching and parallel execution
+- 🔗 **Shared code** - Types, schemas, and utilities across all apps
+- 📦 **Efficient installs** - pnpm workspace linking
+- 🎯 **Task automation** - Consistent build, test, and deploy commands
 
 ## Quick Start
 
 ### Prerequisites
 
 - AWS CLI configured with appropriate permissions
-- Node.js 18+ and npm/pnpm
+- Node.js 18+ and pnpm 8+
 - AWS CDK CLI: `npm install -g aws-cdk`
 - VS Code (recommended) with extensions for TypeScript and ESLint
 
@@ -61,10 +84,16 @@ git clone <repository-url>
 cd e-commerce
 ```
 
-### 2. Deploy Infrastructure
+### 2. Install Dependencies
 
 ```bash
-cd infra/cdk
+pnpm install
+```
+
+### 3. Deploy Infrastructure
+
+```bash
+cd root-infra/cdk
 ./deploy.sh
 ```
 
@@ -74,15 +103,6 @@ This will:
 - Bootstrap CDK (if needed)
 - Deploy the complete infrastructure
 - Generate deployment outputs
-
-### 3. Test the GraphQL API
-
-The deployment will output the GraphQL API URL and API Key. You can test the endpoints:
-
-```bash
-# Test all GraphQL endpoints
-./test-graphql.sh
-```
 
 ### 4. Test the GraphQL API
 
@@ -188,9 +208,9 @@ The project includes workspace-specific settings in `.vscode/settings.json`:
 
 ### Data Security
 
-- **Encryption at Rest** - RDS and S3 encryption
+- **Encryption at Rest** - DynamoDB and S3 encryption
 - **Encryption in Transit** - TLS for all connections
-- **Secrets Manager** - Secure credential storage
+- **IAM Authentication** - Secure access control
 
 ### Application Security
 
@@ -202,16 +222,16 @@ The project includes workspace-specific settings in `.vscode/settings.json`:
 
 ### CloudWatch Dashboard
 
-- API Gateway request metrics
+- AppSync GraphQL API metrics
 - Lambda function performance
-- Database connection monitoring
+- DynamoDB table monitoring
 - Error tracking and alerting
 
 ### Logging
 
 - Lambda function logs
-- API Gateway access logs
-- RDS slow query logs
+- AppSync request logs
+- DynamoDB access patterns
 - Security event logging
 
 ## Cost Optimization
@@ -219,24 +239,25 @@ The project includes workspace-specific settings in `.vscode/settings.json`:
 ### Development Settings
 
 - Single NAT Gateway
-- T3.micro RDS instance
+- DynamoDB pay-per-request billing
 - Minimal Lambda memory allocation
 - S3 lifecycle policies
 
 ### Production Recommendations
 
-- Enable Multi-AZ for RDS
+- Consider DynamoDB provisioned capacity for predictable workloads
 - Increase Lambda memory for performance
-- Enable RDS deletion protection
-- Set up cost alerts
+- Enable DynamoDB point-in-time recovery
+- Set up cost alerts and budgets
 
 ## Development Workflow
 
 ### Local Development
 
 1. Use AWS SAM for local Lambda testing
-2. Connect to local PostgreSQL for database testing
+2. Use DynamoDB Local for database testing
 3. Use environment variables for configuration
+4. Run frontend apps with `pnpm dev` in root-ui/admin or root-ui/web
 
 ### Testing
 
@@ -254,10 +275,17 @@ The project includes workspace-specific settings in `.vscode/settings.json`:
 
 ### Frontend Development
 
-- Create React/Vue.js frontend application
-- Implement user authentication and authorization
-- Add payment processing integration
-- Build responsive product catalog
+The monorepo includes two frontend applications:
+
+- **Admin Dashboard** (`root-ui/admin`) - Built with Vite, React, and TanStack Router
+- **Web App** (`root-ui/web`) - Built with Next.js
+
+To continue development:
+
+- Connect frontends to the GraphQL API
+- Implement Cognito authentication flow
+- Add payment processing integration (Stripe/PayPal)
+- Enhance product catalog and shopping cart features
 
 ### Additional Features
 
@@ -279,32 +307,40 @@ The project includes workspace-specific settings in `.vscode/settings.json`:
 ## Useful Commands
 
 ```bash
+# Install all dependencies
+pnpm install
+
 # Deploy infrastructure
-cd infra/cdk
+cd root-infra/cdk
 ./deploy.sh
 
 # Deploy to production
 ./deploy.sh production
 
+# Test GraphQL API
+./test-graphql.sh <graphql-url> <api-key>
+
 # View stack outputs
-cdk list
+./get-outputs.sh
 
 # Destroy infrastructure
 cdk destroy
 
-# View logs
-npm run logs
+# Run frontend apps
+cd root-ui/admin && pnpm dev   # Admin dashboard
+cd root-ui/web && pnpm dev     # Web app
 
-# Generate outputs
-npm run outputs
+# Run tests
+pnpm test                      # Run all tests
+cd root-infra/cdk && pnpm test # CDK tests only
 ```
 
 ## Documentation
 
-- [Infrastructure Documentation](infra/cdk/README.md)
+- [Infrastructure Documentation](root-infra/cdk/README.md)
 - [AWS CDK Documentation](https://docs.aws.amazon.com/cdk/)
-- [API Documentation](infra/cdk/README.md#api-endpoints)
-- [Security Best Practices](infra/cdk/README.md#security-features)
+- [GraphQL Schema](root-schema/graphql/schema.graphql)
+- [Lambda Functions](root-infra/cdk/lambda/)
 
 ## Contributing
 
@@ -322,7 +358,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For issues and questions:
 
-1. Check the [Infrastructure Documentation](infra/cdk/README.md)
+1. Check the [Infrastructure Documentation](root-infra/cdk/README.md)
 2. Review CloudWatch logs for debugging
 3. Consult AWS best practices
 4. Open an issue in the repository

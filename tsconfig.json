@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "~/root-lib/*": ["./root-lib/*"],
+      "~/root-infra/*": ["./root-infra/*"],
+      "~/root-ui/*": ["./root-ui/*"]
+    }
+  }
+}

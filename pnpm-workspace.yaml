@@ -1,0 +1,7 @@
+packages:
+  - 'root-infra/cdk'
+  - 'root-infra/cdk/lambda/functions/*'
+  - 'root-infra/cdk/lambda/layers/*'
+  - 'root-ui/*'
+  - 'root-lib'
+  - 'root-schema'

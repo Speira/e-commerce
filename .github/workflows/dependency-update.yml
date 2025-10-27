@@ -1,0 +1,270 @@
+name: Dependency Updates
+
+on:
+  schedule:
+    # Run every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    inputs:
+      update_type:
+        description: 'Type of updates to perform'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      dry_run:
+        description: 'Dry run (create PR but do not merge)'
+        required: false
+        default: true
+        type: boolean
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8.15.0'
+
+jobs:
+  # Check for outdated dependencies
+  check-outdated:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for outdated packages
+        id: outdated
+        run: |
+          echo "Checking for outdated packages..."
+          OUTDATED=$(pnpm outdated --format=json || echo "[]")
+          echo "outdated=$OUTDATED" >> $GITHUB_OUTPUT
+
+          # Count outdated packages
+          COUNT=$(echo "$OUTDATED" | jq length)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+
+          if [ "$COUNT" -gt 0 ]; then
+            echo "Found $COUNT outdated packages"
+            echo "$OUTDATED" | jq -r '.[] | "\(.name): \(.current) -> \(.latest)"'
+          else
+            echo "No outdated packages found"
+          fi
+
+      - name: Upload outdated report
+        uses: actions/upload-artifact@v4
+        with:
+          name: outdated-report
+          path: |
+            outdated-report.json
+
+  # Update dependencies
+  update-dependencies:
+    runs-on: ubuntu-latest
+    needs: check-outdated
+    if: needs.check-outdated.outputs.count > 0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Update dependencies
+        run: |
+          UPDATE_TYPE="${{ github.event.inputs.update_type || 'minor' }}"
+          echo "Updating dependencies with type: $UPDATE_TYPE"
+
+          case $UPDATE_TYPE in
+            "patch")
+              pnpm update --recursive
+              ;;
+            "minor")
+              pnpm update --recursive --latest
+              ;;
+            "major")
+              pnpm update --recursive --latest --latest
+              ;;
+          esac
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run tests after update
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          echo "Running tests to verify updates..."
+          pnpm test || echo "Tests failed, but continuing with PR creation"
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            chore: update dependencies
+
+            - Updated dependencies to latest versions
+            - Update type: ${{ github.event.inputs.update_type || 'minor' }}
+            - Automated by GitHub Actions
+          title: |
+            🔄 Dependency Updates (${{ github.event.inputs.update_type || 'minor' }})
+          body: |
+            ## 📦 Dependency Updates
+
+            This PR contains automated dependency updates.
+
+            **Update Type:** ${{ github.event.inputs.update_type || 'minor' }}
+            **Generated:** ${{ github.run_number }}
+
+            ### Changes
+            - Updated dependencies to latest compatible versions
+            - All packages have been updated according to the specified update type
+
+            ### Testing
+            - [ ] Tests pass locally
+            - [ ] No breaking changes detected
+            - [ ] All functionality verified
+
+            ### Notes
+            - Please review the changes carefully
+            - Test the application thoroughly before merging
+            - Consider running additional integration tests
+
+            ---
+            *This PR was created automatically by the dependency update workflow.*
+          branch: dependency-updates-${{ github.run_number }}
+          delete-branch: true
+          labels: |
+            dependencies
+            automated
+            ${{ github.event.inputs.update_type || 'minor' }}-update
+
+  # Security audit
+  security-audit:
+    runs-on: ubuntu-latest
+    needs: update-dependencies
+    if: always() && needs.update-dependencies.result == 'success'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run security audit
+        run: |
+          echo "Running security audit..."
+          pnpm audit --audit-level moderate || echo "Security audit completed with warnings"
+
+      - name: Check for vulnerabilities
+        run: |
+          echo "Checking for known vulnerabilities..."
+          pnpm audit --json > audit-results.json || true
+
+          # Count vulnerabilities by severity
+          HIGH=$(jq '.metadata.vulnerabilities.high // 0' audit-results.json)
+          MODERATE=$(jq '.metadata.vulnerabilities.moderate // 0' audit-results.json)
+          LOW=$(jq '.metadata.vulnerabilities.low // 0' audit-results.json)
+
+          echo "Vulnerabilities found:"
+          echo "- High: $HIGH"
+          echo "- Moderate: $MODERATE"
+          echo "- Low: $LOW"
+
+          if [ "$HIGH" -gt 0 ]; then
+            echo "⚠️ High severity vulnerabilities found!"
+            exit 1
+          fi
+
+  # Summary
+  summary:
+    runs-on: ubuntu-latest
+    needs: [check-outdated, update-dependencies, security-audit]
+    if: always()
+    steps:
+      - name: Dependency Update Summary
+        run: |
+          echo "## 📦 Dependency Update Summary"
+          echo ""
+          echo "**Outdated packages found:** ${{ needs.check-outdated.outputs.count }}"
+          echo "**Update job result:** ${{ needs.update-dependencies.result }}"
+          echo "**Security audit result:** ${{ needs.security-audit.result }}"
+          echo ""
+
+          if [ "${{ needs.check-outdated.outputs.count }}" -eq 0 ]; then
+            echo "✅ All dependencies are up to date!"
+          elif [ "${{ needs.update-dependencies.result }}" = "success" ]; then
+            echo "✅ Dependencies updated successfully!"
+          else
+            echo "❌ Dependency update failed or was skipped"
+          fi

@@ -1,0 +1,362 @@
+name: Pull Request Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '8.15.0'
+
+jobs:
+  # Validate PR title and description
+  pr-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate PR title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            ci
+            chore
+            revert
+          requireScope: false
+          disallowScopes: |
+            wip
+            temp
+            test
+
+  # Check for changes in critical files
+  critical-files-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes in critical files
+        run: |
+          echo "Checking for changes in critical files..."
+
+          # Get list of changed files
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Check for changes in critical infrastructure files
+          if echo "$CHANGED_FILES" | grep -q "root-infra/"; then
+            echo "⚠️ Infrastructure changes detected"
+            echo "Please ensure you have:"
+            echo "- Tested the changes locally"
+            echo "- Updated documentation if needed"
+            echo "- Considered the impact on existing deployments"
+          fi
+
+          # Check for changes in package.json files
+          if echo "$CHANGED_FILES" | grep -q "package.json"; then
+            echo "📦 Package.json changes detected"
+            echo "Please ensure you have:"
+            echo "- Updated lock files"
+            echo "- Tested with new dependencies"
+            echo "- Considered security implications"
+          fi
+
+          # Check for changes in workflow files
+          if echo "$CHANGED_FILES" | grep -q ".github/workflows/"; then
+            echo "🔄 Workflow changes detected"
+            echo "Please ensure you have:"
+            echo "- Tested the workflow changes"
+            echo "- Updated documentation"
+            echo "- Considered the impact on CI/CD pipeline"
+          fi
+
+  # Run affected tests only
+  affected-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Nx
+        uses: actions/cache@v4
+        with:
+          path: ~/.nx/cache
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/nx.json', '**/package.json', '**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-
+
+      - name: Get affected projects
+        id: affected
+        run: |
+          # Get the base commit for comparison
+          BASE_SHA=${{ github.event.pull_request.base.sha }}
+          HEAD_SHA=${{ github.event.pull_request.head.sha }}
+
+          echo "Base SHA: $BASE_SHA"
+          echo "Head SHA: $HEAD_SHA"
+
+          # Get affected projects
+          AFFECTED=$(npx nx show projects --affected --base=$BASE_SHA --head=$HEAD_SHA || echo "")
+          echo "affected=$AFFECTED" >> $GITHUB_OUTPUT
+
+          if [ -n "$AFFECTED" ]; then
+            echo "Affected projects: $AFFECTED"
+          else
+            echo "No affected projects found"
+          fi
+
+      - name: Run affected tests
+        if: steps.affected.outputs.affected != ''
+        run: |
+          echo "Running tests for affected projects..."
+          npx nx affected --target=test --base=${{ github.event.pull_request.base.sha }} --head=${{ github.event.pull_request.head.sha }}
+
+      - name: Run affected linting
+        if: steps.affected.outputs.affected != ''
+        run: |
+          echo "Running linting for affected projects..."
+          npx nx affected --target=lint --base=${{ github.event.pull_request.base.sha }} --head=${{ github.event.pull_request.head.sha }}
+
+      - name: Run affected type checking
+        if: steps.affected.outputs.affected != ''
+        run: |
+          echo "Running type checking for affected projects..."
+          npx nx affected --target=type-check --base=${{ github.event.pull_request.base.sha }} --head=${{ github.event.pull_request.head.sha }}
+
+  # Build affected projects
+  affected-build:
+    runs-on: ubuntu-latest
+    needs: affected-tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Nx
+        uses: actions/cache@v4
+        with:
+          path: ~/.nx/cache
+          key: ${{ runner.os }}-nx-${{ hashFiles('**/nx.json', '**/package.json', '**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-
+
+      - name: Build affected projects
+        run: |
+          echo "Building affected projects..."
+          npx nx affected --target=build --base=${{ github.event.pull_request.base.sha }} --head=${{ github.event.pull_request.head.sha }}
+
+  # Security check for PR
+  pr-security-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.pull_request.base.sha }}
+          head: ${{ github.event.pull_request.head.sha }}
+          extra_args: --debug --only-verified
+
+      - name: Check for dependency vulnerabilities
+        run: |
+          echo "Checking for new vulnerabilities..."
+          pnpm audit --audit-level moderate || echo "Audit completed with findings"
+
+  # PR size check
+  pr-size-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR size
+        run: |
+          # Get PR statistics
+          ADDITIONS=${{ github.event.pull_request.additions }}
+          DELETIONS=${{ github.event.pull_request.deletions }}
+          CHANGED_FILES=${{ github.event.pull_request.changed_files }}
+
+          echo "PR Statistics:"
+          echo "- Additions: $ADDITIONS"
+          echo "- Deletions: $DELETIONS"
+          echo "- Changed files: $CHANGED_FILES"
+
+          # Check if PR is too large
+          if [ "$ADDITIONS" -gt 1000 ] || [ "$CHANGED_FILES" -gt 50 ]; then
+            echo "⚠️ Large PR detected!"
+            echo "Consider breaking this into smaller, more focused PRs."
+            echo "This helps with:"
+            echo "- Easier code review"
+            echo "- Faster CI/CD"
+            echo "- Reduced risk of conflicts"
+            echo "- Better change tracking"
+          else
+            echo "✅ PR size is reasonable"
+          fi
+
+  # Comment PR with results
+  pr-comment:
+    runs-on: ubuntu-latest
+    needs:
+      [
+        pr-validation,
+        critical-files-check,
+        affected-tests,
+        affected-build,
+        pr-security-check,
+        pr-size-check,
+      ]
+    if: always()
+    steps:
+      - name: Comment PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && 
+              comment.body.includes('## 🔍 PR Validation Results')
+            );
+
+            const results = {
+              'PR Validation': '${{ needs.pr-validation.result }}',
+              'Critical Files Check': '${{ needs.critical-files-check.result }}',
+              'Affected Tests': '${{ needs.affected-tests.result }}',
+              'Affected Build': '${{ needs.affected-build.result }}',
+              'Security Check': '${{ needs.pr-security-check.result }}',
+              'Size Check': '${{ needs.pr-size-check.result }}'
+            };
+
+            const statusEmoji = (status) => {
+              switch(status) {
+                case 'success': return '✅';
+                case 'failure': return '❌';
+                case 'cancelled': return '⏹️';
+                default: return '⏳';
+              }
+            };
+
+            const body = `## 🔍 PR Validation Results
+
+            | Check | Status |
+            |-------|--------|
+            ${Object.entries(results).map(([check, status]) => 
+              `| ${check} | ${statusEmoji(status)} |`
+            ).join('\n')}
+
+            **PR Statistics:**
+            - Additions: ${{ github.event.pull_request.additions }}
+            - Deletions: ${{ github.event.pull_request.deletions }}
+            - Changed files: ${{ github.event.pull_request.changed_files }}
+
+            ---
+            *This comment will be updated as checks complete.*`;
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }

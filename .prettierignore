@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+.turbo/
+
+# Coverage
+coverage/
+
+# CDK outputs
+cdk.out/
+*.d.ts
+*.d.ts.map
+*.js.map
+
+# Logs
+*.log
+
+# Environment files
+.env*
+!.env.example
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE
+.vscode/
+.idea/

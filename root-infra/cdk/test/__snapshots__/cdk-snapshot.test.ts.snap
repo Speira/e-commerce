@@ -1,0 +1,4581 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match AppSync API snapshot: appsync-configuration 1`] = `
+{
+  "api": {
+    "EcommerceGraphQL18A9DD16": {
+      "Properties": {
+        "AuthenticationType": "API_KEY",
+        "LogConfig": {
+          "CloudWatchLogsRoleArn": {
+            "Fn::GetAtt": [
+              "EcommerceGraphQLApiLogsRole776DC292",
+              "Arn",
+            ],
+          },
+          "FieldLogLevel": "ALL",
+        },
+        "Name": "Ecommerce GraphQL API",
+        "XrayEnabled": true,
+      },
+      "Type": "AWS::AppSync::GraphQLApi",
+    },
+  },
+  "resolvers": {
+    "EcommerceGraphQLMutationCreateOrder89A09F5C": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "createOrder",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationCreateProduct5F890180": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "createProduct",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationCreateUser04AA35B2": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "createUser",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationDeleteOrder3FCB17F5": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "deleteOrder",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationDeleteProduct8FC6C7A5": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "deleteProduct",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationDeleteUser9CA9D2BB": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "deleteUser",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationUpdateOrder0F806D0D": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "updateOrder",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationUpdateProduct8CF797BA": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "updateProduct",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationUpdateUser8DB24B59": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "updateUser",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetOrderF6C69C2B": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "getOrder",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetOrdersByUser9D930D6A": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "getOrdersByUser",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetProductAE11B445": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "getProduct",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetUserD7EDC546": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "getUser",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryListOrders14967EB9": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "listOrders",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryListProducts319FF10F": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "listProducts",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryListUsers59374992": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "listUsers",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match DynamoDB tables snapshot: dynamodb-tables 1`] = `
+{
+  "OrdersTable315BB997": {
+    "DeletionPolicy": "Delete",
+    "Properties": {
+      "AttributeDefinitions": [
+        {
+          "AttributeName": "id",
+          "AttributeType": "S",
+        },
+        {
+          "AttributeName": "createdAt",
+          "AttributeType": "S",
+        },
+        {
+          "AttributeName": "userId",
+          "AttributeType": "S",
+        },
+      ],
+      "BillingMode": "PAY_PER_REQUEST",
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "UserIndex",
+          "KeySchema": [
+            {
+              "AttributeName": "userId",
+              "KeyType": "HASH",
+            },
+            {
+              "AttributeName": "createdAt",
+              "KeyType": "RANGE",
+            },
+          ],
+          "Projection": {
+            "ProjectionType": "ALL",
+          },
+        },
+      ],
+      "KeySchema": [
+        {
+          "AttributeName": "id",
+          "KeyType": "HASH",
+        },
+        {
+          "AttributeName": "createdAt",
+          "KeyType": "RANGE",
+        },
+      ],
+      "PointInTimeRecoverySpecification": {
+        "PointInTimeRecoveryEnabled": true,
+      },
+      "SSESpecification": {
+        "SSEEnabled": true,
+      },
+      "TableName": "teststack-orders",
+      "TimeToLiveSpecification": {
+        "AttributeName": "ttl",
+        "Enabled": true,
+      },
+    },
+    "Type": "AWS::DynamoDB::Table",
+    "UpdateReplacePolicy": "Delete",
+  },
+  "ProductsTable241ADBFF": {
+    "DeletionPolicy": "Delete",
+    "Properties": {
+      "AttributeDefinitions": [
+        {
+          "AttributeName": "id",
+          "AttributeType": "S",
+        },
+        {
+          "AttributeName": "category",
+          "AttributeType": "S",
+        },
+        {
+          "AttributeName": "price",
+          "AttributeType": "N",
+        },
+      ],
+      "BillingMode": "PAY_PER_REQUEST",
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "CategoryIndex",
+          "KeySchema": [
+            {
+              "AttributeName": "category",
+              "KeyType": "HASH",
+            },
+            {
+              "AttributeName": "price",
+              "KeyType": "RANGE",
+            },
+          ],
+          "Projection": {
+            "ProjectionType": "ALL",
+          },
+        },
+      ],
+      "KeySchema": [
+        {
+          "AttributeName": "id",
+          "KeyType": "HASH",
+        },
+      ],
+      "PointInTimeRecoverySpecification": {
+        "PointInTimeRecoveryEnabled": true,
+      },
+      "SSESpecification": {
+        "SSEEnabled": true,
+      },
+      "TableName": "teststack-products",
+      "TimeToLiveSpecification": {
+        "AttributeName": "ttl",
+        "Enabled": true,
+      },
+    },
+    "Type": "AWS::DynamoDB::Table",
+    "UpdateReplacePolicy": "Delete",
+  },
+  "UsersTable9725E9C8": {
+    "DeletionPolicy": "Delete",
+    "Properties": {
+      "AttributeDefinitions": [
+        {
+          "AttributeName": "id",
+          "AttributeType": "S",
+        },
+        {
+          "AttributeName": "email",
+          "AttributeType": "S",
+        },
+      ],
+      "BillingMode": "PAY_PER_REQUEST",
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "EmailIndex",
+          "KeySchema": [
+            {
+              "AttributeName": "email",
+              "KeyType": "HASH",
+            },
+          ],
+          "Projection": {
+            "ProjectionType": "ALL",
+          },
+        },
+      ],
+      "KeySchema": [
+        {
+          "AttributeName": "id",
+          "KeyType": "HASH",
+        },
+      ],
+      "PointInTimeRecoverySpecification": {
+        "PointInTimeRecoveryEnabled": true,
+      },
+      "SSESpecification": {
+        "SSEEnabled": true,
+      },
+      "TableName": "teststack-users",
+      "TimeToLiveSpecification": {
+        "AttributeName": "ttl",
+        "Enabled": true,
+      },
+    },
+    "Type": "AWS::DynamoDB::Table",
+    "UpdateReplacePolicy": "Delete",
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match IAM roles and policies snapshot: iam-configuration 1`] = `
+{
+  "policies": {
+    "EcommerceGraphQLOrderDataSourceServiceRoleDefaultPolicyC062A271": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "OrderFunctionFABF799C",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "OrderFunctionFABF799C",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcommerceGraphQLOrderDataSourceServiceRoleDefaultPolicyC062A271",
+        "Roles": [
+          {
+            "Ref": "EcommerceGraphQLOrderDataSourceServiceRoleADE10F5A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EcommerceGraphQLProductDataSourceServiceRoleDefaultPolicy8C8C1584": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductFunction5AC8A50B",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductFunction5AC8A50B",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcommerceGraphQLProductDataSourceServiceRoleDefaultPolicy8C8C1584",
+        "Roles": [
+          {
+            "Ref": "EcommerceGraphQLProductDataSourceServiceRoleBE02011E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EcommerceGraphQLUserDataSourceServiceRoleDefaultPolicyEDCB1E47": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UserFunction89BB1343",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UserFunction89BB1343",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcommerceGraphQLUserDataSourceServiceRoleDefaultPolicyEDCB1E47",
+        "Roles": [
+          {
+            "Ref": "EcommerceGraphQLUserDataSourceServiceRole443F2191",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": [
+          {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "OrderFunctionServiceRoleDefaultPolicyC38EDEDD": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "OrdersTable315BB997",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "OrdersTable315BB997",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductsTable241ADBFF",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductsTable241ADBFF",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UsersTable9725E9C8",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UsersTable9725E9C8",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "OrderFunctionServiceRoleDefaultPolicyC38EDEDD",
+        "Roles": [
+          {
+            "Ref": "OrderFunctionServiceRole3E66F569",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ProductFunctionServiceRoleDefaultPolicyCA8A9EDD": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductsTable241ADBFF",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductsTable241ADBFF",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductBucketF29FF21A",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductBucketF29FF21A",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ProductFunctionServiceRoleDefaultPolicyCA8A9EDD",
+        "Roles": [
+          {
+            "Ref": "ProductFunctionServiceRole02117572",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "UserFunctionServiceRoleDefaultPolicyC7B85C5B": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UsersTable9725E9C8",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UsersTable9725E9C8",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UserBucket9D85EFED",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UserBucket9D85EFED",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "UserFunctionServiceRoleDefaultPolicyC7B85C5B",
+        "Roles": [
+          {
+            "Ref": "UserFunctionServiceRole0FF0EA2F",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+  },
+  "roles": {
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLApiLogsRole776DC292": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSAppSyncPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLOrderDataSourceServiceRoleADE10F5A": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLProductDataSourceServiceRoleBE02011E": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLUserDataSourceServiceRole443F2191": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "OrderFunctionServiceRole3E66F569": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ProductFunctionServiceRole02117572": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "UserFunctionServiceRole0FF0EA2F": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match Lambda functions snapshot: lambda-functions 1`] = `
+{
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+    "DependsOn": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+    ],
+    "Properties": {
+      "Code": {
+        "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+        "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip",
+      },
+      "Description": {
+        "Fn::Join": [
+          "",
+          [
+            "Lambda function for auto-deleting objects in ",
+            {
+              "Ref": "ProductBucketF29FF21A",
+            },
+            " S3 bucket.",
+          ],
+        ],
+      },
+      "Handler": "index.handler",
+      "MemorySize": 128,
+      "Role": {
+        "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn",
+        ],
+      },
+      "Runtime": "nodejs20.x",
+      "Timeout": 900,
+    },
+    "Type": "AWS::Lambda::Function",
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+    "DependsOn": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+    ],
+    "Properties": {
+      "Code": {
+        "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+        "S3Key": "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d.zip",
+      },
+      "Handler": "index.handler",
+      "Role": {
+        "Fn::GetAtt": [
+          "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+          "Arn",
+        ],
+      },
+      "Runtime": "nodejs20.x",
+      "Timeout": 900,
+    },
+    "Type": "AWS::Lambda::Function",
+  },
+  "OrderFunctionFABF799C": {
+    "DependsOn": [
+      "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+      "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+      "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+      "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      "OrderFunctionServiceRoleDefaultPolicyC38EDEDD",
+      "OrderFunctionServiceRole3E66F569",
+    ],
+    "Properties": {
+      "Code": {
+        "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+        "S3Key": "63947f7690d6a00715df8f66c86a327b162101a0348a98fab95edc0ba2302836.zip",
+      },
+      "Environment": {
+        "Variables": {
+          "NODE_ENV": "production",
+          "ORDERS_TABLE": {
+            "Ref": "OrdersTable315BB997",
+          },
+          "PRODUCTS_TABLE": {
+            "Ref": "ProductsTable241ADBFF",
+          },
+          "USERS_TABLE": {
+            "Ref": "UsersTable9725E9C8",
+          },
+        },
+      },
+      "Handler": "dist/index.handler",
+      "Layers": [
+        {
+          "Ref": "CommonLayer306767A0",
+        },
+      ],
+      "MemorySize": 512,
+      "Role": {
+        "Fn::GetAtt": [
+          "OrderFunctionServiceRole3E66F569",
+          "Arn",
+        ],
+      },
+      "Runtime": "nodejs18.x",
+      "Timeout": 30,
+      "VpcConfig": {
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "LambdaSecurityGroup0BD9FC99",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetIds": [
+          {
+            "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+          },
+          {
+            "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+          },
+        ],
+      },
+    },
+    "Type": "AWS::Lambda::Function",
+  },
+  "ProductFunction5AC8A50B": {
+    "DependsOn": [
+      "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+      "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+      "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+      "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      "ProductFunctionServiceRoleDefaultPolicyCA8A9EDD",
+      "ProductFunctionServiceRole02117572",
+    ],
+    "Properties": {
+      "Code": {
+        "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+        "S3Key": "418ae9299a266380311d7191a9412a3596cbd66301764ecda3edf1e299106f86.zip",
+      },
+      "Environment": {
+        "Variables": {
+          "NODE_ENV": "production",
+          "PRODUCTS_TABLE": {
+            "Ref": "ProductsTable241ADBFF",
+          },
+          "PRODUCT_BUCKET": {
+            "Ref": "ProductBucketF29FF21A",
+          },
+        },
+      },
+      "Handler": "dist/index.handler",
+      "Layers": [
+        {
+          "Ref": "CommonLayer306767A0",
+        },
+      ],
+      "MemorySize": 512,
+      "Role": {
+        "Fn::GetAtt": [
+          "ProductFunctionServiceRole02117572",
+          "Arn",
+        ],
+      },
+      "Runtime": "nodejs18.x",
+      "Timeout": 30,
+      "VpcConfig": {
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "LambdaSecurityGroup0BD9FC99",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetIds": [
+          {
+            "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+          },
+          {
+            "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+          },
+        ],
+      },
+    },
+    "Type": "AWS::Lambda::Function",
+  },
+  "UserFunction89BB1343": {
+    "DependsOn": [
+      "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+      "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+      "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+      "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      "UserFunctionServiceRoleDefaultPolicyC7B85C5B",
+      "UserFunctionServiceRole0FF0EA2F",
+    ],
+    "Properties": {
+      "Code": {
+        "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+        "S3Key": "fa80fafca2a583bffb0c4fc7384c5ee57b1e1404d3056e51a0cff5d482d596f5.zip",
+      },
+      "Environment": {
+        "Variables": {
+          "NODE_ENV": "production",
+          "USERS_TABLE": {
+            "Ref": "UsersTable9725E9C8",
+          },
+          "USER_BUCKET": {
+            "Ref": "UserBucket9D85EFED",
+          },
+        },
+      },
+      "Handler": "dist/index.handler",
+      "Layers": [
+        {
+          "Ref": "CommonLayer306767A0",
+        },
+      ],
+      "MemorySize": 512,
+      "Role": {
+        "Fn::GetAtt": [
+          "UserFunctionServiceRole0FF0EA2F",
+          "Arn",
+        ],
+      },
+      "Runtime": "nodejs18.x",
+      "Timeout": 30,
+      "VpcConfig": {
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "LambdaSecurityGroup0BD9FC99",
+              "GroupId",
+            ],
+          },
+        ],
+        "SubnetIds": [
+          {
+            "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+          },
+          {
+            "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+          },
+        ],
+      },
+    },
+    "Type": "AWS::Lambda::Function",
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match S3 buckets snapshot: s3-buckets 1`] = `
+{
+  "ProductBucketF29FF21A": {
+    "DeletionPolicy": "Delete",
+    "Properties": {
+      "BucketEncryption": {
+        "ServerSideEncryptionConfiguration": [
+          {
+            "ServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256",
+            },
+          },
+        ],
+      },
+      "BucketName": "teststack-products-123456789012",
+      "LifecycleConfiguration": {
+        "Rules": [
+          {
+            "Id": "DeleteOldVersions",
+            "NoncurrentVersionExpiration": {
+              "NoncurrentDays": 30,
+            },
+            "Status": "Enabled",
+          },
+        ],
+      },
+      "PublicAccessBlockConfiguration": {
+        "BlockPublicAcls": true,
+        "BlockPublicPolicy": true,
+        "IgnorePublicAcls": true,
+        "RestrictPublicBuckets": true,
+      },
+      "Tags": [
+        {
+          "Key": "aws-cdk:auto-delete-objects",
+          "Value": "true",
+        },
+      ],
+      "VersioningConfiguration": {
+        "Status": "Enabled",
+      },
+    },
+    "Type": "AWS::S3::Bucket",
+    "UpdateReplacePolicy": "Delete",
+  },
+  "UserBucket9D85EFED": {
+    "DeletionPolicy": "Delete",
+    "Properties": {
+      "BucketEncryption": {
+        "ServerSideEncryptionConfiguration": [
+          {
+            "ServerSideEncryptionByDefault": {
+              "SSEAlgorithm": "AES256",
+            },
+          },
+        ],
+      },
+      "BucketName": "teststack-users-123456789012",
+      "PublicAccessBlockConfiguration": {
+        "BlockPublicAcls": true,
+        "BlockPublicPolicy": true,
+        "IgnorePublicAcls": true,
+        "RestrictPublicBuckets": true,
+      },
+      "Tags": [
+        {
+          "Key": "aws-cdk:auto-delete-objects",
+          "Value": "true",
+        },
+      ],
+      "VersioningConfiguration": {
+        "Status": "Enabled",
+      },
+    },
+    "Type": "AWS::S3::Bucket",
+    "UpdateReplacePolicy": "Delete",
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match VPC configuration snapshot: vpc-configuration 1`] = `
+{
+  "EcommerceVPC0C8C3771": {
+    "Properties": {
+      "CidrBlock": "10.0.0.0/16",
+      "EnableDnsHostnames": true,
+      "EnableDnsSupport": true,
+      "InstanceTenancy": "default",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "TestStack/EcommerceVPC",
+        },
+      ],
+    },
+    "Type": "AWS::EC2::VPC",
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Infrastructure Snapshot Tests should match the complete stack snapshot 1`] = `
+{
+  "Outputs": {
+    "GraphQLApiKey": {
+      "Description": "AppSync GraphQL API Key",
+      "Export": {
+        "Name": "TestStack-graphql-key",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "EcommerceGraphQLDefaultApiKey91FA9488",
+          "ApiKey",
+        ],
+      },
+    },
+    "GraphQLApiUrl": {
+      "Description": "AppSync GraphQL API URL",
+      "Export": {
+        "Name": "TestStack-graphql-url",
+      },
+      "Value": {
+        "Fn::GetAtt": [
+          "EcommerceGraphQL18A9DD16",
+          "GraphQLUrl",
+        ],
+      },
+    },
+    "OrdersTableName": {
+      "Description": "DynamoDB Orders table name",
+      "Export": {
+        "Name": "TestStack-orders-table",
+      },
+      "Value": {
+        "Ref": "OrdersTable315BB997",
+      },
+    },
+    "ProductBucketName": {
+      "Description": "Product S3 bucket name",
+      "Export": {
+        "Name": "TestStack-product-bucket",
+      },
+      "Value": {
+        "Ref": "ProductBucketF29FF21A",
+      },
+    },
+    "ProductsTableName": {
+      "Description": "DynamoDB Products table name",
+      "Export": {
+        "Name": "TestStack-products-table",
+      },
+      "Value": {
+        "Ref": "ProductsTable241ADBFF",
+      },
+    },
+    "UserBucketName": {
+      "Description": "User S3 bucket name",
+      "Export": {
+        "Name": "TestStack-user-bucket",
+      },
+      "Value": {
+        "Ref": "UserBucket9D85EFED",
+      },
+    },
+    "UsersTableName": {
+      "Description": "DynamoDB Users table name",
+      "Export": {
+        "Name": "TestStack-users-table",
+      },
+      "Value": {
+        "Ref": "UsersTable9725E9C8",
+      },
+    },
+  },
+  "Parameters": {
+    "BootstrapVersion": {
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+      "Type": "AWS::SSM::Parameter::Value<String>",
+    },
+  },
+  "Resources": {
+    "CommonLayer306767A0": {
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs18.x",
+        ],
+        "Content": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+          "S3Key": "071091063b024bf1388ea3408d12fc266e9e0338b16aa8202bdf5c893daa8493.zip",
+        },
+        "Description": "Common dependencies for e-commerce Lambda functions",
+      },
+      "Type": "AWS::Lambda::LayerVersion",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "DependsOn": [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+          "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip",
+        },
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Lambda function for auto-deleting objects in ",
+              {
+                "Ref": "ProductBucketF29FF21A",
+              },
+              " S3 bucket.",
+            ],
+          ],
+        },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:\${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceDashboard8598EF50": {
+      "Properties": {
+        "DashboardBody": {
+          "Fn::Join": [
+            "",
+            [
+              "{"widgets":[{"type":"metric","width":6,"height":6,"x":0,"y":0,"properties":{"view":"timeSeries","title":"AppSync GraphQL Requests","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[["AWS/AppSync","4XXError",{"stat":"Sum"}],["AWS/AppSync","5XXError",{"stat":"Sum"}]],"yAxis":{}}},{"type":"metric","width":6,"height":6,"x":6,"y":0,"properties":{"view":"timeSeries","title":"Lambda Errors","region":"",
+              {
+                "Ref": "AWS::Region",
+              },
+              "","metrics":[["AWS/Lambda","Errors",{"stat":"Sum"}]],"yAxis":{}}}]}",
+            ],
+          ],
+        },
+        "DashboardName": "Ecommerce-Monitoring",
+      },
+      "Type": "AWS::CloudWatch::Dashboard",
+    },
+    "EcommerceGraphQL18A9DD16": {
+      "Properties": {
+        "AuthenticationType": "API_KEY",
+        "LogConfig": {
+          "CloudWatchLogsRoleArn": {
+            "Fn::GetAtt": [
+              "EcommerceGraphQLApiLogsRole776DC292",
+              "Arn",
+            ],
+          },
+          "FieldLogLevel": "ALL",
+        },
+        "Name": "Ecommerce GraphQL API",
+        "XrayEnabled": true,
+      },
+      "Type": "AWS::AppSync::GraphQLApi",
+    },
+    "EcommerceGraphQLApiLogsRole776DC292": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSAppSyncPushToCloudWatchLogs",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLDefaultApiKey91FA9488": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+      },
+      "Type": "AWS::AppSync::ApiKey",
+    },
+    "EcommerceGraphQLLogRetention6E0A7BCF": {
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/appsync/apis/",
+              {
+                "Fn::GetAtt": [
+                  "EcommerceGraphQL18A9DD16",
+                  "ApiId",
+                ],
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 7,
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "EcommerceGraphQLMutationCreateOrder89A09F5C": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "createOrder",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationCreateProduct5F890180": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "createProduct",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationCreateUser04AA35B2": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "createUser",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationDeleteOrder3FCB17F5": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "deleteOrder",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationDeleteProduct8FC6C7A5": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "deleteProduct",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationDeleteUser9CA9D2BB": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "deleteUser",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationUpdateOrder0F806D0D": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "updateOrder",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationUpdateProduct8CF797BA": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "updateProduct",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLMutationUpdateUser8DB24B59": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "updateUser",
+        "Kind": "UNIT",
+        "TypeName": "Mutation",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLOrderDataSourceFE07E966": {
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "LambdaConfig": {
+          "LambdaFunctionArn": {
+            "Fn::GetAtt": [
+              "OrderFunctionFABF799C",
+              "Arn",
+            ],
+          },
+        },
+        "Name": "OrderDataSource",
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQLOrderDataSourceServiceRoleADE10F5A",
+            "Arn",
+          ],
+        },
+        "Type": "AWS_LAMBDA",
+      },
+      "Type": "AWS::AppSync::DataSource",
+    },
+    "EcommerceGraphQLOrderDataSourceServiceRoleADE10F5A": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLOrderDataSourceServiceRoleDefaultPolicyC062A271": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "OrderFunctionFABF799C",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "OrderFunctionFABF799C",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcommerceGraphQLOrderDataSourceServiceRoleDefaultPolicyC062A271",
+        "Roles": [
+          {
+            "Ref": "EcommerceGraphQLOrderDataSourceServiceRoleADE10F5A",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EcommerceGraphQLProductDataSource6FA3E5AB": {
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "LambdaConfig": {
+          "LambdaFunctionArn": {
+            "Fn::GetAtt": [
+              "ProductFunction5AC8A50B",
+              "Arn",
+            ],
+          },
+        },
+        "Name": "ProductDataSource",
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQLProductDataSourceServiceRoleBE02011E",
+            "Arn",
+          ],
+        },
+        "Type": "AWS_LAMBDA",
+      },
+      "Type": "AWS::AppSync::DataSource",
+    },
+    "EcommerceGraphQLProductDataSourceServiceRoleBE02011E": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLProductDataSourceServiceRoleDefaultPolicy8C8C1584": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductFunction5AC8A50B",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductFunction5AC8A50B",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcommerceGraphQLProductDataSourceServiceRoleDefaultPolicy8C8C1584",
+        "Roles": [
+          {
+            "Ref": "EcommerceGraphQLProductDataSourceServiceRoleBE02011E",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EcommerceGraphQLQueryGetOrderF6C69C2B": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "getOrder",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetOrdersByUser9D930D6A": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "getOrdersByUser",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetProductAE11B445": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "getProduct",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryGetUserD7EDC546": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "getUser",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryListOrders14967EB9": {
+      "DependsOn": [
+        "EcommerceGraphQLOrderDataSourceFE07E966",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "OrderDataSource",
+        "FieldName": "listOrders",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryListProducts319FF10F": {
+      "DependsOn": [
+        "EcommerceGraphQLProductDataSource6FA3E5AB",
+        "EcommerceGraphQLSchema5986117F",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "ProductDataSource",
+        "FieldName": "listProducts",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLQueryListUsers59374992": {
+      "DependsOn": [
+        "EcommerceGraphQLSchema5986117F",
+        "EcommerceGraphQLUserDataSource17C7B923",
+      ],
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "DataSourceName": "UserDataSource",
+        "FieldName": "listUsers",
+        "Kind": "UNIT",
+        "TypeName": "Query",
+      },
+      "Type": "AWS::AppSync::Resolver",
+    },
+    "EcommerceGraphQLSchema5986117F": {
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "Definition": "# E-commerce GraphQL Schema
+# This schema defines the complete GraphQL API for the e-commerce application
+
+scalar AWSDateTime
+scalar AWSJSON
+
+# Product Types
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+  stock: Int!
+  category: String
+  imageUrl: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Float!
+  stock: Int
+  category: String
+  imageUrl: String
+}
+
+input UpdateProductInput {
+  name: String
+  description: String
+  price: Float
+  stock: Int
+  category: String
+  imageUrl: String
+}
+
+# User Types
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole!
+  phone: String
+  address: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  MANAGER
+}
+
+input CreateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole
+  phone: String
+  address: String
+}
+
+input UpdateUserInput {
+  email: String
+  firstName: String
+  lastName: String
+  role: UserRole
+  phone: String
+  address: String
+}
+
+# Order Types
+type OrderItem {
+  id: ID!
+  productId: ID!
+  product: Product
+  quantity: Int!
+  price: Float!
+  createdAt: AWSDateTime!
+}
+
+type Order {
+  id: ID!
+  userId: ID!
+  user: User
+  status: OrderStatus!
+  total: Float!
+  shippingAddress: String
+  items: [OrderItem!]!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+input CreateOrderInput {
+  userId: ID!
+  items: [OrderItemInput!]!
+  shippingAddress: String
+}
+
+input OrderItemInput {
+  productId: ID!
+  quantity: Int!
+}
+
+input UpdateOrderInput {
+  status: OrderStatus
+  shippingAddress: String
+}
+
+# Shopping Cart Types
+type CartItem {
+  id: ID!
+  userId: ID!
+  productId: ID!
+  product: Product
+  quantity: Int!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input AddToCartInput {
+  productId: ID!
+  quantity: Int!
+}
+
+input UpdateCartItemInput {
+  quantity: Int!
+}
+
+# Product Review Types
+type ProductReview {
+  id: ID!
+  productId: ID!
+  product: Product
+  userId: ID!
+  user: User
+  rating: Int!
+  comment: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreateReviewInput {
+  productId: ID!
+  rating: Int!
+  comment: String
+}
+
+input UpdateReviewInput {
+  rating: Int
+  comment: String
+}
+
+# Response Types
+type ProductResponse {
+  success: Boolean!
+  data: Product
+  error: String
+}
+
+type ProductsResponse {
+  success: Boolean!
+  data: ProductsData
+  error: String
+}
+
+type ProductsData {
+  items: [Product!]!
+  total: Int!
+}
+
+type UserResponse {
+  success: Boolean!
+  data: User
+  error: String
+}
+
+type UsersResponse {
+  success: Boolean!
+  data: UsersData
+  error: String
+}
+
+type UsersData {
+  items: [User!]!
+  total: Int!
+}
+
+type OrderResponse {
+  success: Boolean!
+  data: Order
+  error: String
+}
+
+type OrdersResponse {
+  success: Boolean!
+  data: OrdersData
+  error: String
+}
+
+type OrdersData {
+  items: [Order!]!
+  total: Int!
+}
+
+type CartItemResponse {
+  success: Boolean!
+  data: CartItem
+  error: String
+}
+
+type CartItemsResponse {
+  success: Boolean!
+  data: [CartItem!]!
+  error: String
+}
+
+type ReviewResponse {
+  success: Boolean!
+  data: ProductReview
+  error: String
+}
+
+type ReviewsResponse {
+  success: Boolean!
+  data: [ProductReview!]!
+  error: String
+}
+
+type MessageResponse {
+  success: Boolean!
+  message: String!
+  error: String
+}
+
+# Query Types
+type Query {
+  # Product Queries
+  listProducts(limit: Int): ProductsResponse!
+  getProduct(id: ID!): ProductResponse!
+
+  # User Queries
+  listUsers(limit: Int): UsersResponse!
+  getUser(id: ID!): UserResponse!
+
+  # Order Queries
+  listOrders(limit: Int): OrdersResponse!
+  getOrder(id: ID!): OrderResponse!
+  getOrdersByUser(userId: ID!, limit: Int): OrdersResponse!
+
+  # Cart Queries
+  cartItems(userId: ID!): CartItemsResponse!
+  cartItem(id: ID!): CartItemResponse!
+
+  # Review Queries
+  productReviews(productId: ID!): ReviewsResponse!
+  userReviews(userId: ID!): ReviewsResponse!
+  review(id: ID!): ReviewResponse!
+}
+
+# Mutation Types
+type Mutation {
+  # Product Mutations
+  createProduct(input: CreateProductInput!): ProductResponse!
+  updateProduct(id: ID!, input: UpdateProductInput!): ProductResponse!
+  deleteProduct(id: ID!): ProductResponse!
+
+  # User Mutations
+  createUser(input: CreateUserInput!): UserResponse!
+  updateUser(id: ID!, input: UpdateUserInput!): UserResponse!
+  deleteUser(id: ID!): UserResponse!
+
+  # Order Mutations
+  createOrder(input: CreateOrderInput!): OrderResponse!
+  updateOrder(id: ID!, input: UpdateOrderInput!): OrderResponse!
+  deleteOrder(id: ID!): OrderResponse!
+
+  # Cart Mutations
+  addToCart(userId: ID!, input: AddToCartInput!): CartItemResponse!
+  updateCartItem(id: ID!, input: UpdateCartItemInput!): CartItemResponse!
+  removeFromCart(id: ID!): MessageResponse!
+  clearCart(userId: ID!): MessageResponse!
+
+  # Review Mutations
+  createReview(userId: ID!, input: CreateReviewInput!): ReviewResponse!
+  updateReview(id: ID!, input: UpdateReviewInput!): ReviewResponse!
+  deleteReview(id: ID!): MessageResponse!
+}
+
+# Subscription Types (for real-time updates)
+type Subscription {
+  # Product Subscriptions
+  productCreated: Product @aws_subscribe(mutations: ["createProduct"])
+
+  productUpdated: Product @aws_subscribe(mutations: ["updateProduct"])
+
+  productDeleted: ID @aws_subscribe(mutations: ["deleteProduct"])
+
+  # Order Subscriptions
+  orderCreated: Order @aws_subscribe(mutations: ["createOrder"])
+
+  orderUpdated: Order @aws_subscribe(mutations: ["updateOrder"])
+
+  # Cart Subscriptions
+  cartItemAdded: CartItem @aws_subscribe(mutations: ["addToCart"])
+
+  cartItemUpdated: CartItem @aws_subscribe(mutations: ["updateCartItem"])
+
+  cartItemRemoved: ID @aws_subscribe(mutations: ["removeFromCart"])
+}
+",
+      },
+      "Type": "AWS::AppSync::GraphQLSchema",
+    },
+    "EcommerceGraphQLUserDataSource17C7B923": {
+      "Properties": {
+        "ApiId": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQL18A9DD16",
+            "ApiId",
+          ],
+        },
+        "LambdaConfig": {
+          "LambdaFunctionArn": {
+            "Fn::GetAtt": [
+              "UserFunction89BB1343",
+              "Arn",
+            ],
+          },
+        },
+        "Name": "UserDataSource",
+        "ServiceRoleArn": {
+          "Fn::GetAtt": [
+            "EcommerceGraphQLUserDataSourceServiceRole443F2191",
+            "Arn",
+          ],
+        },
+        "Type": "AWS_LAMBDA",
+      },
+      "Type": "AWS::AppSync::DataSource",
+    },
+    "EcommerceGraphQLUserDataSourceServiceRole443F2191": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "appsync.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "EcommerceGraphQLUserDataSourceServiceRoleDefaultPolicyEDCB1E47": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "lambda:InvokeFunction",
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UserFunction89BB1343",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UserFunction89BB1343",
+                          "Arn",
+                        ],
+                      },
+                      ":*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "EcommerceGraphQLUserDataSourceServiceRoleDefaultPolicyEDCB1E47",
+        "Roles": [
+          {
+            "Ref": "EcommerceGraphQLUserDataSourceServiceRole443F2191",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "EcommerceVPC0C8C3771": {
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::VPC",
+    },
+    "EcommerceVPCDatabaseSubnet1RouteTable25C7E5B3": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/DatabaseSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "EcommerceVPCDatabaseSubnet1RouteTableAssociation707E7A7A": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "EcommerceVPCDatabaseSubnet1RouteTable25C7E5B3",
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCDatabaseSubnet1Subnet505C0EE7",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "EcommerceVPCDatabaseSubnet1Subnet505C0EE7": {
+      "Properties": {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.4.0/28",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Database",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/DatabaseSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "EcommerceVPCDatabaseSubnet2RouteTableAssociation5560D2CA": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "EcommerceVPCDatabaseSubnet2RouteTableD15D2E0D",
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCDatabaseSubnet2SubnetB2FD1963",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "EcommerceVPCDatabaseSubnet2RouteTableD15D2E0D": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/DatabaseSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "EcommerceVPCDatabaseSubnet2SubnetB2FD1963": {
+      "Properties": {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.4.16/28",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Database",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated",
+          },
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/DatabaseSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "EcommerceVPCIGW14978A73": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::InternetGateway",
+    },
+    "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "EcommerceVPCPublicSubnet1NATGateway56B50EFC",
+        },
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPrivateSubnet1RouteTableE54EE6BB",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPrivateSubnet1RouteTableE54EE6BB",
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "EcommerceVPCPrivateSubnet1RouteTableE54EE6BB": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PrivateSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "EcommerceVPCPrivateSubnet1SubnetB008B123": {
+      "Properties": {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.2.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PrivateSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7": {
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "EcommerceVPCPublicSubnet1NATGateway56B50EFC",
+        },
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPrivateSubnet2RouteTableEB68C2EE",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPrivateSubnet2RouteTableEB68C2EE",
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "EcommerceVPCPrivateSubnet2RouteTableEB68C2EE": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PrivateSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "EcommerceVPCPrivateSubnet2Subnet9415FEB9": {
+      "Properties": {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.3.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private",
+          },
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PrivateSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "EcommerceVPCPublicSubnet1DefaultRoute1D26CE18": {
+      "DependsOn": [
+        "EcommerceVPCVPCGW4CCAFB9E",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "EcommerceVPCIGW14978A73",
+        },
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPublicSubnet1RouteTable8357AAEA",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "EcommerceVPCPublicSubnet1EIP216F43BF": {
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::EIP",
+    },
+    "EcommerceVPCPublicSubnet1NATGateway56B50EFC": {
+      "DependsOn": [
+        "EcommerceVPCPublicSubnet1DefaultRoute1D26CE18",
+        "EcommerceVPCPublicSubnet1RouteTableAssociation8F09899D",
+      ],
+      "Properties": {
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "EcommerceVPCPublicSubnet1EIP216F43BF",
+            "AllocationId",
+          ],
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCPublicSubnet1Subnet0AFBA6BF",
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PublicSubnet1",
+          },
+        ],
+      },
+      "Type": "AWS::EC2::NatGateway",
+    },
+    "EcommerceVPCPublicSubnet1RouteTable8357AAEA": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PublicSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "EcommerceVPCPublicSubnet1RouteTableAssociation8F09899D": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPublicSubnet1RouteTable8357AAEA",
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCPublicSubnet1Subnet0AFBA6BF",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "EcommerceVPCPublicSubnet1Subnet0AFBA6BF": {
+      "Properties": {
+        "AvailabilityZone": "dummy1a",
+        "CidrBlock": "10.0.0.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PublicSubnet1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "EcommerceVPCPublicSubnet2DefaultRouteF7734C2D": {
+      "DependsOn": [
+        "EcommerceVPCVPCGW4CCAFB9E",
+      ],
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "EcommerceVPCIGW14978A73",
+        },
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPublicSubnet2RouteTable3C1443CB",
+        },
+      },
+      "Type": "AWS::EC2::Route",
+    },
+    "EcommerceVPCPublicSubnet2RouteTable3C1443CB": {
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PublicSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::RouteTable",
+    },
+    "EcommerceVPCPublicSubnet2RouteTableAssociation41FAADC7": {
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "EcommerceVPCPublicSubnet2RouteTable3C1443CB",
+        },
+        "SubnetId": {
+          "Ref": "EcommerceVPCPublicSubnet2Subnet648A4090",
+        },
+      },
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+    },
+    "EcommerceVPCPublicSubnet2Subnet648A4090": {
+      "Properties": {
+        "AvailabilityZone": "dummy1b",
+        "CidrBlock": "10.0.1.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public",
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public",
+          },
+          {
+            "Key": "Name",
+            "Value": "TestStack/EcommerceVPC/PublicSubnet2",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::Subnet",
+    },
+    "EcommerceVPCVPCGW4CCAFB9E": {
+      "Properties": {
+        "InternetGatewayId": {
+          "Ref": "EcommerceVPCIGW14978A73",
+        },
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+    },
+    "EcommerceWebACL": {
+      "Properties": {
+        "DefaultAction": {
+          "Allow": {},
+        },
+        "Rules": [
+          {
+            "Action": {
+              "Block": {},
+            },
+            "Name": "RateLimitRule",
+            "Priority": 1,
+            "Statement": {
+              "RateBasedStatement": {
+                "AggregateKeyType": "IP",
+                "Limit": 2000,
+              },
+            },
+            "VisibilityConfig": {
+              "CloudWatchMetricsEnabled": true,
+              "MetricName": "RateLimitRuleMetric",
+              "SampledRequestsEnabled": true,
+            },
+          },
+          {
+            "Name": "SQLInjectionRule",
+            "OverrideAction": {
+              "None": {},
+            },
+            "Priority": 2,
+            "Statement": {
+              "ManagedRuleGroupStatement": {
+                "Name": "AWSManagedRulesSQLiRuleSet",
+                "VendorName": "AWS",
+              },
+            },
+            "VisibilityConfig": {
+              "CloudWatchMetricsEnabled": true,
+              "MetricName": "SQLInjectionRuleMetric",
+              "SampledRequestsEnabled": true,
+            },
+          },
+        ],
+        "Scope": "REGIONAL",
+        "VisibilityConfig": {
+          "CloudWatchMetricsEnabled": true,
+          "MetricName": "EcommerceWebACLMetric",
+          "SampledRequestsEnabled": true,
+        },
+      },
+      "Type": "AWS::WAFv2::WebACL",
+    },
+    "LambdaSecurityGroup0BD9FC99": {
+      "Properties": {
+        "GroupDescription": "Security group for Lambda functions",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Allow all outbound traffic by default",
+            "IpProtocol": "-1",
+          },
+        ],
+        "VpcId": {
+          "Ref": "EcommerceVPC0C8C3771",
+        },
+      },
+      "Type": "AWS::EC2::SecurityGroup",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+      "DependsOn": [
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+          "S3Key": "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d.zip",
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs20.x",
+        "Timeout": 900,
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy",
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": [
+          {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "OrderFunctionFABF799C": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+        "OrderFunctionServiceRoleDefaultPolicyC38EDEDD",
+        "OrderFunctionServiceRole3E66F569",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+          "S3Key": "63947f7690d6a00715df8f66c86a327b162101a0348a98fab95edc0ba2302836.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "NODE_ENV": "production",
+            "ORDERS_TABLE": {
+              "Ref": "OrdersTable315BB997",
+            },
+            "PRODUCTS_TABLE": {
+              "Ref": "ProductsTable241ADBFF",
+            },
+            "USERS_TABLE": {
+              "Ref": "UsersTable9725E9C8",
+            },
+          },
+        },
+        "Handler": "dist/index.handler",
+        "Layers": [
+          {
+            "Ref": "CommonLayer306767A0",
+          },
+        ],
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "OrderFunctionServiceRole3E66F569",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 30,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "LambdaSecurityGroup0BD9FC99",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+            },
+            {
+              "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "OrderFunctionLogRetention0D287646": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "OrderFunctionFABF799C",
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 7,
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "OrderFunctionServiceRole3E66F569": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "OrderFunctionServiceRoleDefaultPolicyC38EDEDD": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "OrdersTable315BB997",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "OrdersTable315BB997",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductsTable241ADBFF",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductsTable241ADBFF",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UsersTable9725E9C8",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UsersTable9725E9C8",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "OrderFunctionServiceRoleDefaultPolicyC38EDEDD",
+        "Roles": [
+          {
+            "Ref": "OrderFunctionServiceRole3E66F569",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "OrdersTable315BB997": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "createdAt",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "userId",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "UserIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "userId",
+                "KeyType": "HASH",
+              },
+              {
+                "AttributeName": "createdAt",
+                "KeyType": "RANGE",
+              },
+            ],
+            "Projection": {
+              "ProjectionType": "ALL",
+            },
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+          {
+            "AttributeName": "createdAt",
+            "KeyType": "RANGE",
+          },
+        ],
+        "PointInTimeRecoverySpecification": {
+          "PointInTimeRecoveryEnabled": true,
+        },
+        "SSESpecification": {
+          "SSEEnabled": true,
+        },
+        "TableName": "teststack-orders",
+        "TimeToLiveSpecification": {
+          "AttributeName": "ttl",
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ProductBucketAutoDeleteObjectsCustomResourceC88954E0": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "ProductBucketPolicy2A80286A",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "ProductBucketF29FF21A",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ProductBucketF29FF21A": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "BucketName": "teststack-products-123456789012",
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "Id": "DeleteOldVersions",
+              "NoncurrentVersionExpiration": {
+                "NoncurrentDays": 30,
+              },
+              "Status": "Enabled",
+            },
+          ],
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "ProductBucketPolicy2A80286A": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "ProductBucketF29FF21A",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductBucketF29FF21A",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductBucketF29FF21A",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "ProductFunction5AC8A50B": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+        "ProductFunctionServiceRoleDefaultPolicyCA8A9EDD",
+        "ProductFunctionServiceRole02117572",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+          "S3Key": "418ae9299a266380311d7191a9412a3596cbd66301764ecda3edf1e299106f86.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "NODE_ENV": "production",
+            "PRODUCTS_TABLE": {
+              "Ref": "ProductsTable241ADBFF",
+            },
+            "PRODUCT_BUCKET": {
+              "Ref": "ProductBucketF29FF21A",
+            },
+          },
+        },
+        "Handler": "dist/index.handler",
+        "Layers": [
+          {
+            "Ref": "CommonLayer306767A0",
+          },
+        ],
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "ProductFunctionServiceRole02117572",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 30,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "LambdaSecurityGroup0BD9FC99",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+            },
+            {
+              "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "ProductFunctionLogRetention16AC4504": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "ProductFunction5AC8A50B",
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 7,
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "ProductFunctionServiceRole02117572": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "ProductFunctionServiceRoleDefaultPolicyCA8A9EDD": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductsTable241ADBFF",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductsTable241ADBFF",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ProductBucketF29FF21A",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ProductBucketF29FF21A",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "ProductFunctionServiceRoleDefaultPolicyCA8A9EDD",
+        "Roles": [
+          {
+            "Ref": "ProductFunctionServiceRole02117572",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "ProductsTable241ADBFF": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "category",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "price",
+            "AttributeType": "N",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "CategoryIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "category",
+                "KeyType": "HASH",
+              },
+              {
+                "AttributeName": "price",
+                "KeyType": "RANGE",
+              },
+            ],
+            "Projection": {
+              "ProjectionType": "ALL",
+            },
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "PointInTimeRecoverySpecification": {
+          "PointInTimeRecoveryEnabled": true,
+        },
+        "SSESpecification": {
+          "SSEEnabled": true,
+        },
+        "TableName": "teststack-products",
+        "TimeToLiveSpecification": {
+          "AttributeName": "ttl",
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "UserBucket9D85EFED": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256",
+              },
+            },
+          ],
+        },
+        "BucketName": "teststack-users-123456789012",
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true",
+          },
+        ],
+        "VersioningConfiguration": {
+          "Status": "Enabled",
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "UserBucketAutoDeleteObjectsCustomResource2CDD7A12": {
+      "DeletionPolicy": "Delete",
+      "DependsOn": [
+        "UserBucketPolicy698BF045",
+      ],
+      "Properties": {
+        "BucketName": {
+          "Ref": "UserBucket9D85EFED",
+        },
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::S3AutoDeleteObjects",
+      "UpdateReplacePolicy": "Delete",
+    },
+    "UserBucketPolicy698BF045": {
+      "Properties": {
+        "Bucket": {
+          "Ref": "UserBucket9D85EFED",
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn",
+                  ],
+                },
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UserBucket9D85EFED",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UserBucket9D85EFED",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+      },
+      "Type": "AWS::S3::BucketPolicy",
+    },
+    "UserFunction89BB1343": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+        "UserFunctionServiceRoleDefaultPolicyC7B85C5B",
+        "UserFunctionServiceRole0FF0EA2F",
+      ],
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-123456789012-eu-west-3",
+          "S3Key": "fa80fafca2a583bffb0c4fc7384c5ee57b1e1404d3056e51a0cff5d482d596f5.zip",
+        },
+        "Environment": {
+          "Variables": {
+            "NODE_ENV": "production",
+            "USERS_TABLE": {
+              "Ref": "UsersTable9725E9C8",
+            },
+            "USER_BUCKET": {
+              "Ref": "UserBucket9D85EFED",
+            },
+          },
+        },
+        "Handler": "dist/index.handler",
+        "Layers": [
+          {
+            "Ref": "CommonLayer306767A0",
+          },
+        ],
+        "MemorySize": 512,
+        "Role": {
+          "Fn::GetAtt": [
+            "UserFunctionServiceRole0FF0EA2F",
+            "Arn",
+          ],
+        },
+        "Runtime": "nodejs18.x",
+        "Timeout": 30,
+        "VpcConfig": {
+          "SecurityGroupIds": [
+            {
+              "Fn::GetAtt": [
+                "LambdaSecurityGroup0BD9FC99",
+                "GroupId",
+              ],
+            },
+          ],
+          "SubnetIds": [
+            {
+              "Ref": "EcommerceVPCPrivateSubnet1SubnetB008B123",
+            },
+            {
+              "Ref": "EcommerceVPCPrivateSubnet2Subnet9415FEB9",
+            },
+          ],
+        },
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "UserFunctionLogRetentionD165024B": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/lambda/",
+              {
+                "Ref": "UserFunction89BB1343",
+              },
+            ],
+          ],
+        },
+        "RetentionInDays": 7,
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn",
+          ],
+        },
+      },
+      "Type": "Custom::LogRetention",
+    },
+    "UserFunctionServiceRole0FF0EA2F": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+    "UserFunctionServiceRoleDefaultPolicyC7B85C5B": {
+      "DependsOn": [
+        "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71",
+        "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6",
+        "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7",
+        "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059",
+      ],
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:ConditionCheckItem",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem",
+                "dynamodb:DescribeTable",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UsersTable9725E9C8",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UsersTable9725E9C8",
+                          "Arn",
+                        ],
+                      },
+                      "/index/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*",
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "UserBucket9D85EFED",
+                    "Arn",
+                  ],
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "UserBucket9D85EFED",
+                          "Arn",
+                        ],
+                      },
+                      "/*",
+                    ],
+                  ],
+                },
+              ],
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "PolicyName": "UserFunctionServiceRoleDefaultPolicyC7B85C5B",
+        "Roles": [
+          {
+            "Ref": "UserFunctionServiceRole0FF0EA2F",
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Policy",
+    },
+    "UsersTable9725E9C8": {
+      "DeletionPolicy": "Delete",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S",
+          },
+          {
+            "AttributeName": "email",
+            "AttributeType": "S",
+          },
+        ],
+        "BillingMode": "PAY_PER_REQUEST",
+        "GlobalSecondaryIndexes": [
+          {
+            "IndexName": "EmailIndex",
+            "KeySchema": [
+              {
+                "AttributeName": "email",
+                "KeyType": "HASH",
+              },
+            ],
+            "Projection": {
+              "ProjectionType": "ALL",
+            },
+          },
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH",
+          },
+        ],
+        "PointInTimeRecoverySpecification": {
+          "PointInTimeRecoveryEnabled": true,
+        },
+        "SSESpecification": {
+          "SSEEnabled": true,
+        },
+        "TableName": "teststack-users",
+        "TimeToLiveSpecification": {
+          "AttributeName": "ttl",
+          "Enabled": true,
+        },
+      },
+      "Type": "AWS::DynamoDB::Table",
+      "UpdateReplacePolicy": "Delete",
+    },
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                  ],
+                  {
+                    "Ref": "BootstrapVersion",
+                  },
+                ],
+              },
+            ],
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI.",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`CDK Stack Snapshots Stack Outputs Snapshot should match outputs snapshot: stack-outputs 1`] = `
+{
+  "GraphQLApiKey": {
+    "Description": "AppSync GraphQL API Key",
+    "Export": {
+      "Name": "TestStack-graphql-key",
+    },
+    "Value": {
+      "Fn::GetAtt": [
+        "EcommerceGraphQLDefaultApiKey91FA9488",
+        "ApiKey",
+      ],
+    },
+  },
+  "GraphQLApiUrl": {
+    "Description": "AppSync GraphQL API URL",
+    "Export": {
+      "Name": "TestStack-graphql-url",
+    },
+    "Value": {
+      "Fn::GetAtt": [
+        "EcommerceGraphQL18A9DD16",
+        "GraphQLUrl",
+      ],
+    },
+  },
+  "OrdersTableName": {
+    "Description": "DynamoDB Orders table name",
+    "Export": {
+      "Name": "TestStack-orders-table",
+    },
+    "Value": {
+      "Ref": "OrdersTable315BB997",
+    },
+  },
+  "ProductBucketName": {
+    "Description": "Product S3 bucket name",
+    "Export": {
+      "Name": "TestStack-product-bucket",
+    },
+    "Value": {
+      "Ref": "ProductBucketF29FF21A",
+    },
+  },
+  "ProductsTableName": {
+    "Description": "DynamoDB Products table name",
+    "Export": {
+      "Name": "TestStack-products-table",
+    },
+    "Value": {
+      "Ref": "ProductsTable241ADBFF",
+    },
+  },
+  "UserBucketName": {
+    "Description": "User S3 bucket name",
+    "Export": {
+      "Name": "TestStack-user-bucket",
+    },
+    "Value": {
+      "Ref": "UserBucket9D85EFED",
+    },
+  },
+  "UsersTableName": {
+    "Description": "DynamoDB Users table name",
+    "Export": {
+      "Name": "TestStack-users-table",
+    },
+    "Value": {
+      "Ref": "UsersTable9725E9C8",
+    },
+  },
+}
+`;

@@ -1,0 +1,67 @@
+{
+  "name": "@speira/e-commerce-lambda-orders",
+  "root": "root-infra/cdk/lambda/functions/orders",
+  "sourceRoot": "root-infra/cdk/lambda/functions/orders/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      },
+      "outputs": ["{workspaceRoot}/root-infra/cdk/lambda/functions/orders/dist"]
+    },
+    "build:prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc && pnpm prune --prod",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      },
+      "outputs": ["{workspaceRoot}/root-infra/cdk/lambda/functions/orders/dist"]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --watch",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --config ../../../../eslint.config.mjs",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --fix --config ../../../../eslint.config.mjs",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'No tests configured for orders-lambda'",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist",
+        "cwd": "root-infra/cdk/lambda/functions/orders"
+      }
+    }
+  },
+  "tags": ["lambda", "orders", "api"]
+}

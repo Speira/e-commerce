@@ -1,0 +1,15 @@
+# Exclude from Lambda layer package
+*.ts
+*.map
+tsconfig.json
+.npmignore
+node_modules/.cache
+node_modules/.pnpm
+**/*.d.ts
+**/*.test.js
+**/*.test.ts
+**/test/**
+**/tests/**
+**/docs/**
+**/examples/**
+**/.github/**

@@ -1,0 +1,71 @@
+{
+  "name": "@speira/e-commerce-lambda-products",
+  "root": "root-infra/cdk/lambda/functions/products",
+  "sourceRoot": "root-infra/cdk/lambda/functions/products/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      },
+      "outputs": [
+        "{workspaceRoot}/root-infra/cdk/lambda/functions/products/dist"
+      ]
+    },
+    "build:prod": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc && pnpm prune --prod",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      },
+      "outputs": [
+        "{workspaceRoot}/root-infra/cdk/lambda/functions/products/dist"
+      ]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --watch",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --config ../../../../eslint.config.mjs",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --fix --config ../../../../eslint.config.mjs",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'No tests configured for products-lambda'",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist",
+        "cwd": "root-infra/cdk/lambda/functions/products"
+      }
+    }
+  },
+  "tags": ["lambda", "products", "api"]
+}

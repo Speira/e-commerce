@@ -1,0 +1,29 @@
+{
+  "name": "@speira/e-commerce-lambda-products",
+  "version": "1.0.0",
+  "description": "Products Lambda function for e-commerce GraphQL API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:prod": "tsc && pnpm prune --prod",
+    "dev": "tsc --watch",
+    "test": "jest --config=jest.config.js",
+    "test:coverage": "jest --config=jest.config.js --coverage",
+    "test:watch": "jest --config=jest.config.js --watch"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1531.0",
+    "joi": "^17.11.0",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^18.0.0",
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.7",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.4",
+    "typescript": "^5.0.0"
+  }
+}

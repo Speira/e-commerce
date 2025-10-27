@@ -1,0 +1,131 @@
+{
+  "name": "@speira/e-commerce-infrastructure",
+  "root": "root-infra/cdk",
+  "sourceRoot": "root-infra/cdk",
+  "projectType": "application",
+  "targets": {
+    "bootstrap": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cdk bootstrap",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-infra/cdk"
+      },
+      "outputs": []
+    },
+    "build:lambda": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd lambda/layers/nodejs && npm run build:prod && cd ../../functions/products && npm run build:prod && cd ../users && npm run build:prod && cd ../orders && npm run build:prod",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cdk deploy",
+        "cwd": "root-infra/cdk"
+      },
+      "dependsOn": ["build"]
+    },
+    "deploy:full": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build:lambda && npm run build && cdk deploy",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "destroy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cdk destroy",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "diff": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cdk diff",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "install:lambda": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd lambda/layers/nodejs && npm install && cd ../../functions/products && npm install && cd ../users && npm install && cd ../orders && npm install",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "synth": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cdk synth",
+        "cwd": "root-infra/cdk"
+      },
+      "dependsOn": ["build"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "test:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --watch",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "test:coverage": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --coverage",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "test:ci": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "jest --ci --coverage --watchAll=false",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --config ../../eslint.config.mjs",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint . --fix --config ../../eslint.config.mjs",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-infra/cdk"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist",
+        "cwd": "root-infra/cdk"
+      }
+    }
+  },
+  "tags": ["infrastructure", "aws", "cdk"]
+}

@@ -1,0 +1,328 @@
+# E-commerce GraphQL Schema
+# This schema defines the complete GraphQL API for the e-commerce application
+
+scalar AWSDateTime
+scalar AWSJSON
+
+# Product Types
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+  stock: Int!
+  category: String
+  imageUrl: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Float!
+  stock: Int
+  category: String
+  imageUrl: String
+}
+
+input UpdateProductInput {
+  name: String
+  description: String
+  price: Float
+  stock: Int
+  category: String
+  imageUrl: String
+}
+
+# User Types
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole!
+  phone: String
+  isActive: Boolean!
+  address: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+  MANAGER
+}
+
+input CreateUserInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole
+  phone: String
+  address: String
+  isActive: Boolean
+}
+
+input UpdateUserInput {
+  email: String
+  firstName: String
+  lastName: String
+  role: UserRole
+  phone: String
+  address: String
+  isActive: Boolean
+}
+
+# Order Types
+type OrderItem {
+  productId: ID!
+  product: Product
+  quantity: Int!
+  price: Float!
+  total: Float!
+}
+
+type Order {
+  id: ID!
+  idempotencyKey: ID!
+  userId: ID!
+  user: User
+  status: OrderStatus!
+  total: Float!
+  shippingAddress: String!
+  items: [OrderItem!]!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+input CreateOrderInput {
+  idempotencyKey: ID!
+  userId: ID!
+  items: [OrderItemInput!]!
+  shippingAddress: String!
+}
+
+input OrderItemInput {
+  productId: ID!
+  quantity: Int!
+}
+
+input UpdateOrderInput {
+  status: OrderStatus
+  shippingAddress: String
+}
+
+# Shopping Cart Types
+type CartItem {
+  id: ID!
+  userId: ID!
+  productId: ID!
+  product: Product
+  quantity: Int!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input AddToCartInput {
+  productId: ID!
+  quantity: Int!
+}
+
+input UpdateCartItemInput {
+  quantity: Int!
+}
+
+# Product Review Types
+type ProductReview {
+  id: ID!
+  productId: ID!
+  product: Product
+  userId: ID!
+  user: User
+  rating: Int!
+  comment: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input CreateReviewInput {
+  productId: ID!
+  rating: Int!
+  comment: String
+}
+
+input UpdateReviewInput {
+  rating: Int
+  comment: String
+}
+
+# Response Types
+type ProductResponse {
+  success: Boolean!
+  data: Product
+  error: String
+}
+
+type ProductsResponse {
+  success: Boolean!
+  data: ProductsData
+  error: String
+}
+
+type ProductsData {
+  items: [Product!]!
+  total: Int!
+  nextToken: String
+}
+
+type UserResponse {
+  success: Boolean!
+  data: User
+  error: String
+}
+
+type UsersResponse {
+  success: Boolean!
+  data: UsersData
+  error: String
+}
+
+type UsersData {
+  items: [User!]!
+  total: Int!
+  nextToken: String
+}
+
+type OrderResponse {
+  success: Boolean!
+  data: Order
+  error: String
+}
+
+type OrdersResponse {
+  success: Boolean!
+  data: OrdersData
+  error: String
+}
+
+type OrdersData {
+  items: [Order!]!
+  total: Int!
+  nextToken: String
+}
+
+type CartItemResponse {
+  success: Boolean!
+  data: CartItem
+  error: String
+}
+
+type CartItemsResponse {
+  success: Boolean!
+  data: [CartItem!]!
+  error: String
+}
+
+type ReviewResponse {
+  success: Boolean!
+  data: ProductReview
+  error: String
+}
+
+type ReviewsResponse {
+  success: Boolean!
+  data: [ProductReview!]!
+  error: String
+}
+
+type MessageResponse {
+  success: Boolean!
+  message: String!
+  error: String
+}
+
+# Query Types
+type Query {
+  # Product Queries
+  listProducts(limit: Int, nextToken: String): ProductsResponse!
+  getProduct(id: ID!): ProductResponse!
+
+  # User Queries
+  listUsers(limit: Int, nextToken: String): UsersResponse!
+  getUser(id: ID!): UserResponse!
+
+  # Order Queries
+  listOrders(limit: Int, nextToken: String): OrdersResponse!
+  getOrder(id: ID!): OrderResponse!
+  getOrdersByUser(userId: ID!, limit: Int, nextToken: String): OrdersResponse!
+
+  # Cart Queries
+  cartItems(userId: ID!): CartItemsResponse!
+  cartItem(id: ID!): CartItemResponse!
+
+  # Review Queries
+  productReviews(productId: ID!): ReviewsResponse!
+  userReviews(userId: ID!): ReviewsResponse!
+  review(id: ID!): ReviewResponse!
+}
+
+# Mutation Types
+type Mutation {
+  # Product Mutations
+  createProduct(input: CreateProductInput!): ProductResponse!
+  updateProduct(id: ID!, input: UpdateProductInput!): ProductResponse!
+  deleteProduct(id: ID!): ProductResponse!
+
+  # User Mutations
+  createUser(input: CreateUserInput!): UserResponse!
+  updateUser(id: ID!, input: UpdateUserInput!): UserResponse!
+  deleteUser(id: ID!): UserResponse!
+
+  # Order Mutations
+  createOrder(input: CreateOrderInput!): OrderResponse!
+  updateOrder(id: ID!, input: UpdateOrderInput!): OrderResponse!
+  deleteOrder(id: ID!): OrderResponse!
+
+  # Cart Mutations
+  addToCart(userId: ID!, input: AddToCartInput!): CartItemResponse!
+  updateCartItem(id: ID!, input: UpdateCartItemInput!): CartItemResponse!
+  removeFromCart(id: ID!): MessageResponse!
+  clearCart(userId: ID!): MessageResponse!
+
+  # Review Mutations
+  createReview(userId: ID!, input: CreateReviewInput!): ReviewResponse!
+  updateReview(id: ID!, input: UpdateReviewInput!): ReviewResponse!
+  deleteReview(id: ID!): MessageResponse!
+}
+
+# Subscription Types (for real-time updates)
+type Subscription {
+  # Product Subscriptions
+  productCreated: Product @aws_subscribe(mutations: ["createProduct"])
+
+  productUpdated: Product @aws_subscribe(mutations: ["updateProduct"])
+
+  productDeleted: ID @aws_subscribe(mutations: ["deleteProduct"])
+
+  # Order Subscriptions
+  orderCreated: Order @aws_subscribe(mutations: ["createOrder"])
+
+  orderUpdated: Order @aws_subscribe(mutations: ["updateOrder"])
+
+  # Cart Subscriptions
+  cartItemAdded: CartItem @aws_subscribe(mutations: ["addToCart"])
+
+  cartItemUpdated: CartItem @aws_subscribe(mutations: ["updateCartItem"])
+
+  cartItemRemoved: ID @aws_subscribe(mutations: ["removeFromCart"])
+}

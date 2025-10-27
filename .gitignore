@@ -21,6 +21,9 @@ node_modules
 **/.nx/** 
 **/.cursorignore
 
+# Build outputs
+**/dist/**
+
 # CDK specific
 **/cdk.out
 **/.tmp

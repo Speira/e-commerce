@@ -1,0 +1,55 @@
+{
+  "name": "@speira/e-commerce-infrastructure",
+  "version": "1.0.0",
+  "description": "Secure e-commerce infrastructure with AWS CDK",
+  "type": "module",
+  "bin": {
+    "cdk": "bin/cdk.js"
+  },
+  "scripts": {
+    "bootstrap": "./cdk-wrapper.sh bootstrap",
+    "build": "tsc",
+    "build:lambda": "cd lambda/layers/nodejs && pnpm build:prod && cd ../../functions/products && pnpm build:prod && cd ../users && pnpm build:prod && cd ../orders && pnpm build:prod",
+    "cdk": "./cdk-wrapper.sh",
+    "deploy": "./cdk-wrapper.sh deploy",
+    "deploy:full": "pnpm run build:lambda && pnpm run build && ./cdk-wrapper.sh deploy",
+    "deploy:prod": "./cdk-wrapper.sh deploy --context environment=production",
+    "destroy": "./cdk-wrapper.sh destroy",
+    "diff": "./cdk-wrapper.sh diff",
+    "install:lambda": "cd lambda/layers/nodejs && pnpm install && cd ../../functions/products && pnpm install && cd ../users && pnpm install && cd ../orders && pnpm install",
+    "logs": "aws logs tail /aws/lambda/EcommerceInfrastructureStack-ProductFunction --follow",
+    "outputs": "./cdk-wrapper.sh deploy --outputs-file outputs.json",
+    "synth": "./cdk-wrapper.sh synth",
+    "test": "jest --config=jest.config.js",
+    "test:ci": "jest --config=jest.config.js --ci --coverage --watchAll=false",
+    "test:coverage": "jest --config=jest.config.js --coverage",
+    "test:infrastructure": "jest --config=jest.config.js --selectProjects infrastructure",
+    "test:integration": "jest --config=jest.config.js --selectProjects integration",
+    "test:lambda": "jest --config=jest.config.js --selectProjects lambda:orders lambda:products lambda:users",
+    "test:lambda:orders": "jest --config=jest.config.js --selectProjects lambda:orders",
+    "test:lambda:products": "jest --config=jest.config.js --selectProjects lambda:products",
+    "test:lambda:users": "jest --config=jest.config.js --selectProjects lambda:users",
+    "test:layer": "jest --config=jest.config.js --selectProjects layer:nodejs",
+    "test:snapshot": "jest --config=jest.config.js --testMatch='**/*snapshot*.test.ts'",
+    "test:snapshot:update": "jest --config=jest.config.js --testMatch='**/*snapshot*.test.ts' --updateSnapshot",
+    "test:verbose": "jest --config=jest.config.js --verbose",
+    "test:watch": "jest --config=jest.config.js --watch",
+    "watch": "tsc -w"
+  },
+  "dependencies": {
+    "@speira/e-commerce-lib": "workspace:*",
+    "@speira/e-commerce-schema": "workspace:*",
+    "aws-cdk-lib": "2.195.0",
+    "constructs": "^10.0.0",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "22.7.9",
+    "aws-cdk": "2.1016.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.4",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.3"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@speira/e-commerce-lambda-test-utils",
+  "version": "1.0.0",
+  "description": "Shared test utilities for lambda functions and layers",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@speira/e-commerce-schema": "workspace:*"
+  }
+}

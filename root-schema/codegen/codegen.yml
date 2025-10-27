@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://www.graphql-code-generator.com/config.schema.json
+
+schema: ./graphql/schema.graphql
+generates:
+  # Base TypeScript types - single source of truth
+  ./generated/types.ts:
+    plugins:
+      - typescript
+      - add:
+          content: /* eslint-disable @typescript-eslint/no-explicit-any */
+    config:
+      useTypeImports: true
+      skipTypename: false
+      enumsAsTypes: true
+      maybeValue: 'T | null'
+      scalars:
+        AWSDateTime: string
+        AWSJSON: string
+      namingConvention:
+        typeNames: pascal-case#pascalCase
+        enumValues: keep
+
+  # Resolver signatures - resolver types for Lambda functions
+  ./generated/resolvers.ts:
+    plugins:
+      - add:
+          content: /* eslint-disable @typescript-eslint/no-explicit-any */
+      - typescript
+      - typescript-resolvers
+    config:
+      useTypeImports: true
+      skipTypename: false
+      enumsAsTypes: true
+      contextType: ../baseSchema#GraphQLContext
+      avoidOptionals:
+        inputValue: false
+        object: true
+        field: true
+      makeResolverTypeCallable: false
+      scalars:
+        AWSDateTime: string
+        AWSJSON: string
+      mappers:
+        Product: ./types#Product
+        User: ./types#User
+        Order: ./types#Order
+        OrderItem: ./types#OrderItem
+        CartItem: ./types#CartItem
+        ProductReview: ./types#ProductReview
+
+  # Zod validation schemas
+  ./generated/zod.ts:
+    plugins:
+      - typescript
+      - graphql-codegen-typescript-validation-schema
+      - add:
+          content: /* eslint-disable @typescript-eslint/no-explicit-any */
+    config:
+      schema: zod
+      enumsAsTypes: true
+      useTypeImports: true
+      withObjectType: false
+      validationSchemaExportType: const
+      strictSchemaTypes: false
+      scalarSchemas:
+        AWSDateTime: z.string().datetime()
+        AWSJSON: z.string()

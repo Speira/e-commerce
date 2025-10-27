@@ -1,0 +1,34 @@
+{
+  "name": "@speira/e-commerce-schema",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GraphQL schema and generated types for e-commerce application",
+  "type": "module",
+  "exports": {
+    ".": "./generated/index.ts",
+    "./types": "./generated/types.ts",
+    "./resolvers": "./generated/resolvers.ts",
+    "./zod": "./generated/zod.ts"
+  },
+  "main": "./generated/index.ts",
+  "types": "./generated/index.ts",
+  "scripts": {
+    "build": "pnpm run codegen",
+    "clean": "rm -rf generated/*",
+    "codegen": "graphql-codegen --config codegen/codegen.yml && pnpm run fix-zod-enums",
+    "codegen:watch": "graphql-codegen --config codegen/codegen.yml --watch",
+    "fix-zod-enums": "sed -i 's/z\\.nativeEnum/z.enum/g; s/: z\\.ZodObject<Properties<\\([^>]*\\)>>//' generated/zod.ts 2>/dev/null || sed -i '' 's/z\\.nativeEnum/z.enum/g; s/: z\\.ZodObject<Properties<\\([^>]*\\)>>//' generated/zod.ts"
+  },
+  "dependencies": {
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/import-types-preset": "^3.0.1",
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-resolvers": "^4.0.0",
+    "graphql": "^16.8.1",
+    "graphql-codegen-typescript-validation-schema": "^0.16.0",
+    "typescript": "~5.6.3"
+  }
+}

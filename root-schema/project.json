@@ -1,0 +1,39 @@
+{
+  "name": "e-commerce-schema",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "root-schema",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/generated"],
+      "options": {
+        "command": "pnpm run codegen",
+        "cwd": "root-schema"
+      }
+    },
+    "codegen": {
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/generated"],
+      "options": {
+        "command": "pnpm run codegen",
+        "cwd": "root-schema"
+      }
+    },
+    "codegen:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run codegen:watch",
+        "cwd": "root-schema"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm run clean",
+        "cwd": "root-schema"
+      }
+    }
+  },
+  "tags": ["type:library", "scope:shared"]
+}

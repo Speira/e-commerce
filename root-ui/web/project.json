@@ -1,0 +1,72 @@
+{
+  "name": "@speira/e-commerce-web",
+  "root": "root-ui/web",
+  "sourceRoot": "root-ui/web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next build --turbopack",
+        "cwd": "root-ui/web"
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next dev --turbopack",
+        "cwd": "root-ui/web"
+      }
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next start",
+        "cwd": "root-ui/web"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint",
+        "cwd": "root-ui/web"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "eslint --fix",
+        "cwd": "root-ui/web"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc --noEmit",
+        "cwd": "root-ui/web"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write .",
+        "cwd": "root-ui/web"
+      }
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --check .",
+        "cwd": "root-ui/web"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf .next",
+        "cwd": "root-ui/web"
+      }
+    }
+  },
+  "tags": ["ui", "nextjs", "web"]
+}

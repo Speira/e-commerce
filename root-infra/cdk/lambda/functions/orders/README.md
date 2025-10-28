@@ -70,8 +70,6 @@ export function createOrderEffect(
 }
 ```
 
-See [EFFECT_TS_MIGRATION.md](./EFFECT_TS_MIGRATION.md) for details.
-
 ## Using the Effect Version
 
 To switch the Lambda handler to use the Effect-based `createOrder`:
@@ -300,7 +298,5 @@ Custom metrics (via CloudWatch dashboard):
 
 ## Related Documentation
 
-- [Effect TS Migration Guide](./EFFECT_TS_MIGRATION.md)
 - [Lambda Layers Documentation](../../layers/nodejs/README.md)
-- [DynamoDB Indexes](../../DYNAMODB_INDEXES.md)
 - [Testing Strategy](../../test/README.md)

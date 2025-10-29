@@ -1,11 +1,15 @@
+import {
+  auth,
+  database,
+  error,
+  repositories,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
 import { UserRole } from '@speira/e-commerce-lib';
-
-import { NodejsLayer } from '~/lambda/layers/nodejs';
 import { GraphQLEvent, User, UserResponse } from '@speira/e-commerce-schema';
 
 import { createUserInputSchema, OperationParams } from '../validators';
 
-const { auth, database, response, error, repositories } = NodejsLayer;
 const { usersRepository } = repositories;
 
 export async function createUser(

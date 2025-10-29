@@ -1,3 +1,11 @@
+import {
+  auth,
+  database,
+  env,
+  error,
+  repositories,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
 import { NumberUtils } from '@speira/e-commerce-lib';
 import {
   GraphQLEvent,
@@ -7,12 +15,9 @@ import {
   Product,
 } from '@speira/e-commerce-schema';
 
-import { NodejsLayer } from '~/lambda/layers/nodejs';
-
 import { withUser } from '../decorators';
 import { createOrderInputSchema, OperationParams } from '../validators';
 
-const { auth, database, response, env, error, repositories } = NodejsLayer;
 const { ordersRepository, usersRepository } = repositories;
 
 const ORDERS_TABLE = env.getEnv('ORDERS_TABLE');

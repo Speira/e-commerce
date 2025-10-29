@@ -1,7 +1,19 @@
 {
-  "name": "@speira/e-commerce-nodejs-layer",
+  "name": "@speira/e-commerce-layer-nodejs",
   "version": "1.0.0",
   "description": "Lambda layer for Node.js dependencies",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./auth": "./src/auth/index.ts",
+    "./database": "./src/database/index.ts",
+    "./env": "./src/env.ts",
+    "./error": "./src/error/index.ts",
+    "./logger": "./src/logger/index.ts",
+    "./repositories": "./src/repositories/index.ts",
+    "./response": "./src/response.ts",
+    "./effectUtils": "./src/effectUtils.ts"
+  },
   "main": "./index.ts",
   "scripts": {
     "build": "tsc",

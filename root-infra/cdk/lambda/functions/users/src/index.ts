@@ -1,4 +1,4 @@
-import { NodejsLayer } from '~/lambda/layers/nodejs';
+import { env, error, Logger, response } from '@speira/e-commerce-layer-nodejs';
 import { GraphQLEvent } from '@speira/e-commerce-schema';
 
 import {
@@ -8,8 +8,6 @@ import {
   listUsers,
   updateUser,
 } from './operations';
-
-const { response, Logger, env, error } = NodejsLayer;
 
 const REQUIRED_ENV_VARS = ['USERS_TABLE'];
 env.validateEnvironment(REQUIRED_ENV_VARS);
@@ -27,7 +25,7 @@ export const handler = async (event: GraphQLEvent): Promise<unknown> => {
     logger.setContext({
       requestId,
       operation: event.fieldName,
-      userId: event.identity?.userId || event.identity?.sub,
+      userId: event.identity?.sub,
       sourceIp: event.identity?.sourceIp?.[0],
     });
 

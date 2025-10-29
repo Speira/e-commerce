@@ -1,15 +1,11 @@
-import { OrderStatus, UserRole } from '@speira/e-commerce-schema';
-import { Context, Effect, Layer } from 'effect';
+import { UserRole } from '@speira/e-commerce-lib';
+import { Effect, Layer } from 'effect';
 
 import {
   AuthService,
   AuthServiceTag,
   DatabaseService,
   DatabaseServiceTag,
-  EffectAppError,
-  EffectAuthError,
-  EffectDatabaseError,
-  EffectValidationError,
   RepositoryService,
   RepositoryServiceTag,
 } from '~/lambda/layers/nodejs/src/effectUtils';
@@ -21,8 +17,8 @@ import { createOrderEffect } from '../src/operations/createOrder.effect';
 const mockAuthService: AuthService = {
   requireAuth: (event: any) =>
     Effect.succeed({
-      userId: event.identity?.userId || 'user-123',
-      userRole: UserRole.USER,
+      userId: event.identity?.sub || 'user-123',
+      userRole: UserRole.Customer,
       isAdmin: false,
       isManager: false,
     }),
@@ -115,7 +111,6 @@ describe('createOrderEffect', () => {
 
   const mockEvent = {
     identity: {
-      userId: 'user-123',
       sub: 'user-123',
     },
     fieldName: 'createOrder',

@@ -1,9 +1,13 @@
-import { NodejsLayer } from '~/lambda/layers/nodejs';
+import {
+  auth,
+  error,
+  repositories,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
 import { GraphQLEvent } from '@speira/e-commerce-schema';
 
 import { OperationParams, userIdSchema } from '../validators';
 
-const { auth, response, error, repositories } = NodejsLayer;
 const { usersRepository } = repositories;
 
 export async function deleteUser(

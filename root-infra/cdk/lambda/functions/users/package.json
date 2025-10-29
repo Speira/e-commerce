@@ -12,6 +12,9 @@
     "test:watch": "jest --config=jest.config.js --watch"
   },
   "dependencies": {
+    "@speira/e-commerce-layer-nodejs": "workspace:*",
+    "@speira/e-commerce-lib": "workspace:*",
+    "@speira/e-commerce-schema": "workspace:*",
     "aws-sdk": "^2.1531.0",
     "joi": "^17.11.0",
     "pg": "^8.11.3",

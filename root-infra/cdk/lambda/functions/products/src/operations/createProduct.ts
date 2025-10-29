@@ -1,9 +1,14 @@
-import { NodejsLayer } from '~/lambda/layers/nodejs';
+import {
+  auth,
+  database,
+  error,
+  repositories,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
 import { GraphQLEvent, Product } from '@speira/e-commerce-schema';
 
 import { createProductInputSchema, OperationParams } from '../validators';
 
-const { auth, database, response, error, repositories } = NodejsLayer;
 const { productsRepository } = repositories;
 
 export async function createProduct(

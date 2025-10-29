@@ -12,7 +12,7 @@ export interface AuthContext {
 
 /** Extract auth context from GraphQL event */
 export function getAuthContext(event: GraphQLEvent): AuthContext {
-  const userId = event.identity?.userId || event.identity?.sub;
+  const userId = event.identity?.sub;
   if (!userId) {
     throw unauthorized('Authentication required');
   }
@@ -20,7 +20,7 @@ export function getAuthContext(event: GraphQLEvent): AuthContext {
   // Role can be in claims or groups
   const role =
     (event.identity?.claims?.['custom:role'] as UserRole) ||
-    (event.identity?.groups?.[0] as UserRole);
+    (event.identity?.claims?.['cognito:groups']?.[0] as UserRole);
 
   const isAdmin = role === UserRole.ADMIN;
   const isManager = role === UserRole.MANAGER || isAdmin;

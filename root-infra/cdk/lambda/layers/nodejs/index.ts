@@ -1,3 +1,23 @@
+// Direct exports for modular monolith pattern
+export * as auth from './src/auth';
+export * as database from './src/database';
+export * as effectUtils from './src/effectUtils';
+export * as env from './src/env';
+export * as error from './src/error';
+export { Logger } from './src/logger';
+export * as repositories from './src/repositories';
+export * as response from './src/response';
+
+// Export individual error types for convenience
+export {
+  EffectAppError,
+  EffectAuthError,
+  EffectDatabaseError,
+  EffectRepositoryError,
+  EffectValidationError,
+} from './src/effectUtils';
+
+// Legacy export for backward compatibility (can be removed later)
 import * as auth from './src/auth';
 import * as database from './src/database';
 import * as effectUtils from './src/effectUtils';
@@ -17,11 +37,3 @@ export const NodejsLayer = {
   repositories,
   response,
 };
-
-export {
-  EffectAppError,
-  EffectAuthError,
-  EffectDatabaseError,
-  EffectRepositoryError,
-  EffectValidationError,
-} from './src/effectUtils';

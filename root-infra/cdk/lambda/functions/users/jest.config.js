@@ -16,7 +16,8 @@ export default {
     ],
   },
   moduleNameMapper: {
-    '^~/(.*)$': '<rootDir>/../../$1',
+    '^~/lambda/layers/(.*)$': '<rootDir>/../../layers/$1',
+    '^~/types$': '<rootDir>/../../../types',
   },
   extensionsToTreatAsEsm: ['.ts'],
   modulePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],

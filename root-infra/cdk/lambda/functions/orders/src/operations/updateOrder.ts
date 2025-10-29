@@ -1,15 +1,18 @@
 import {
+  auth,
+  error,
+  repositories,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
+import {
   GraphQLEvent,
   OrderResponse,
   UpdateOrderInputSchema,
 } from '@speira/e-commerce-schema';
 
-import { NodejsLayer } from '~/lambda/layers/nodejs';
-
 import { withUser } from '../decorators';
 import { OperationParams, orderIdSchema } from '../validators';
 
-const { auth, response, error, repositories } = NodejsLayer;
 const { ordersRepository } = repositories;
 
 /** Update an order */

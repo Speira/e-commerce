@@ -1,3 +1,13 @@
+import {
+  EffectAppError,
+  EffectAuthError,
+  EffectDatabaseError,
+  effectUtils,
+  EffectValidationError,
+  env,
+  error,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
 import { NumberUtils } from '@speira/e-commerce-lib';
 import {
   GraphQLEvent,
@@ -8,18 +18,8 @@ import {
 } from '@speira/e-commerce-schema';
 import { Effect, pipe } from 'effect';
 
-import {
-  EffectAppError,
-  EffectAuthError,
-  EffectDatabaseError,
-  EffectValidationError,
-  NodejsLayer,
-} from '~/lambda/layers/nodejs';
-
 import { withUser } from '../decorators';
 import { CreateOrderInput, createOrderInputSchema } from '../validators';
-
-const { effectUtils, env, error, response } = NodejsLayer;
 
 const ORDERS_TABLE = env.getEnv('ORDERS_TABLE');
 const PRODUCTS_TABLE = env.getEnv('PRODUCTS_TABLE');

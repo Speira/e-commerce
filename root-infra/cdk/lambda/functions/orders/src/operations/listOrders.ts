@@ -1,4 +1,11 @@
-import { NodejsLayer } from '~/lambda/layers/nodejs';
+import {
+  auth,
+  database,
+  env,
+  error,
+  repositories,
+  response,
+} from '@speira/e-commerce-layer-nodejs';
 import {
   GraphQLEvent,
   Order,
@@ -12,7 +19,6 @@ import {
   paginationTokenSchema,
 } from '../validators';
 
-const { auth, database, response, env, error, repositories } = NodejsLayer;
 const { ordersRepository } = repositories;
 
 const USERS_TABLE = env.getEnv('USERS_TABLE');

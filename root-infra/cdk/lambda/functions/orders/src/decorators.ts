@@ -1,8 +1,6 @@
+import { error, repositories } from '@speira/e-commerce-layer-nodejs';
 import { Order } from '@speira/e-commerce-schema';
 
-import { NodejsLayer } from '~/lambda/layers/nodejs';
-
-const { error, repositories } = NodejsLayer;
 const { usersRepository } = repositories;
 
 /** Decorator to decorate order with user details */

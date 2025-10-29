@@ -1,8 +1,6 @@
-import { NodejsLayer } from '~/lambda/layers/nodejs';
+import { error, repositories, response } from '@speira/e-commerce-layer-nodejs';
 
 import { OperationParams, productLimitSchema } from '../validators';
-
-const { response, error, repositories } = NodejsLayer;
 
 const { productsRepository } = repositories;
 

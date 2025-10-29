@@ -1,6 +1,8 @@
 import type { GraphQLEvent } from '@speira/e-commerce-schema';
-import { handler } from '../src/index';
+
 import { createMockEvent } from '../../../test-utils/src';
+import { handler } from '../src/index';
+
 import { mockDatabase, mockResponse, setupOrderTests } from './test-helpers';
 
 describe('deleteOrder', () => {

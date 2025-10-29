@@ -1,8 +1,7 @@
-import { NodejsLayer } from '~/lambda/layers/nodejs';
+import { error, repositories, response } from '@speira/e-commerce-layer-nodejs';
 
 import { OperationParams, productIdSchema } from '../validators';
 
-const { repositories, response, error } = NodejsLayer;
 const { productsRepository } = repositories;
 
 export const getProduct = async (params: OperationParams) => {

@@ -1,6 +1,5 @@
+import { env, error, Logger, response } from '@speira/e-commerce-layer-nodejs';
 import { GraphQLEvent } from '@speira/e-commerce-schema';
-
-import { NodejsLayer } from '~/lambda/layers/nodejs';
 
 import {
   createOrder,
@@ -10,8 +9,6 @@ import {
   listOrders,
   updateOrder,
 } from './operations';
-
-const { response, Logger, error, env } = NodejsLayer;
 
 const logger = new Logger('orders-service');
 
@@ -32,7 +29,7 @@ export const handler = async (event: GraphQLEvent) => {
   logger.setContext({
     requestId,
     operation: fieldName,
-    userId: event.identity?.userId || event.identity?.sub,
+    userId: event.identity?.sub,
     sourceIp: event.identity?.sourceIp?.[0],
   });
 

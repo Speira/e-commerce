@@ -61,8 +61,8 @@ describe('createOrder', () => {
         {
           price: 29.99,
           product: {
-            id: mockProducts[0].id,
-            name: mockProducts[0].name,
+            id: mockProducts[0]?.id,
+            name: mockProducts[0]?.name,
           },
           productId: 'prod-1',
           quantity: 2,
@@ -72,8 +72,8 @@ describe('createOrder', () => {
           price: 49.99,
           productId: 'prod-2',
           product: {
-            id: mockProducts[1].id,
-            name: mockProducts[1].name,
+            id: mockProducts[1]?.id,
+            name: mockProducts[1]?.name,
           },
           quantity: 1,
           total: 49.99,

@@ -1,20 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  AWSDateTime: { input: string; output: string; }
-  AWSJSON: { input: string; output: string; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  AWSDateTime: { input: string; output: string };
+  AWSJSON: { input: string; output: string };
 };
 
 export type AddToCartInput = {
@@ -106,87 +119,71 @@ export type Mutation = {
   updateUser: UserResponse;
 };
 
-
 export type MutationAddToCartArgs = {
   input: AddToCartInput;
   userId: Scalars['ID']['input'];
 };
 
-
 export type MutationClearCartArgs = {
   userId: Scalars['ID']['input'];
 };
-
 
 export type MutationCreateOrderArgs = {
   input: CreateOrderInput;
 };
 
-
 export type MutationCreateProductArgs = {
   input: CreateProductInput;
 };
-
 
 export type MutationCreateReviewArgs = {
   input: CreateReviewInput;
   userId: Scalars['ID']['input'];
 };
 
-
 export type MutationCreateUserArgs = {
   input: CreateUserInput;
 };
-
 
 export type MutationDeleteOrderArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type MutationDeleteProductArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type MutationDeleteReviewArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type MutationDeleteUserArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type MutationRemoveFromCartArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type MutationUpdateCartItemArgs = {
   id: Scalars['ID']['input'];
   input: UpdateCartItemInput;
 };
 
-
 export type MutationUpdateOrderArgs = {
   id: Scalars['ID']['input'];
   input: UpdateOrderInput;
 };
-
 
 export type MutationUpdateProductArgs = {
   id: Scalars['ID']['input'];
   input: UpdateProductInput;
 };
 
-
 export type MutationUpdateReviewArgs = {
   id: Scalars['ID']['input'];
   input: UpdateReviewInput;
 };
-
 
 export type MutationUpdateUserArgs = {
   id: Scalars['ID']['input'];
@@ -228,12 +225,13 @@ export type OrderResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type OrderStatus =
-  | 'CANCELLED'
-  | 'DELIVERED'
-  | 'PENDING'
-  | 'PROCESSING'
-  | 'SHIPPED';
+export enum OrderStatus {
+  CANCELLED = 'CANCELLED',
+  DELIVERED = 'DELIVERED',
+  PENDING = 'PENDING',
+  PROCESSING = 'PROCESSING',
+  SHIPPED = 'SHIPPED',
+}
 
 export type OrdersData = {
   __typename?: 'OrdersData';
@@ -312,21 +310,17 @@ export type Query = {
   userReviews: ReviewsResponse;
 };
 
-
 export type QueryCartItemArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryCartItemsArgs = {
   userId: Scalars['ID']['input'];
 };
 
-
 export type QueryGetOrderArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryGetOrdersByUserArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -334,44 +328,36 @@ export type QueryGetOrdersByUserArgs = {
   userId: Scalars['ID']['input'];
 };
 
-
 export type QueryGetProductArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type QueryGetUserArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryListOrdersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   nextToken?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QueryListProductsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   nextToken?: InputMaybe<Scalars['String']['input']>;
 };
-
 
 export type QueryListUsersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   nextToken?: InputMaybe<Scalars['String']['input']>;
 };
 
-
 export type QueryProductReviewsArgs = {
   productId: Scalars['ID']['input'];
 };
 
-
 export type QueryReviewArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryUserReviewsArgs = {
   userId: Scalars['ID']['input'];
@@ -457,10 +443,11 @@ export type UserResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type UserRole =
-  | 'ADMIN'
-  | 'CUSTOMER'
-  | 'MANAGER';
+export enum UserRole {
+  ADMIN = 'ADMIN',
+  CUSTOMER = 'CUSTOMER',
+  MANAGER = 'MANAGER',
+}
 
 export type UsersData = {
   __typename?: 'UsersData';

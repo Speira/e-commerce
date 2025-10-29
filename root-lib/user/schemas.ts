@@ -5,20 +5,20 @@ import { User, UserRole, UsersData } from '@speira/e-commerce-schema';
 import { z } from 'zod';
 
 export type { User, UsersData };
-
+export { UserRole };
 export const UserRoleSchema = z.enum(UserRole);
 
 export const UserSchema = z.object({
-  id: z.string().uuid('User ID must be a valid UUID'),
-  email: z.string().email('Email must be valid'),
+  id: z.uuid('User ID must be a valid UUID'),
+  email: z.email('Email must be valid'),
   firstName: z.string().min(1, 'First name is required').max(100),
   lastName: z.string().min(1, 'Last name is required').max(100),
   role: UserRoleSchema,
   phone: z.string().max(20).optional().nullable(),
   isActive: z.boolean(),
   address: z.string().max(500).optional().nullable(),
-  createdAt: z.string().datetime('Created date must be ISO 8601 datetime'),
-  updatedAt: z.string().datetime('Updated date must be ISO 8601 datetime'),
+  createdAt: z.iso.datetime('Created date must be ISO 8601 datetime'),
+  updatedAt: z.iso.datetime('Updated date must be ISO 8601 datetime'),
 });
 
 export const UsersDataSchema = z.object({

@@ -28,3 +28,13 @@ export interface GraphQLContext {
   username?: string;
   isAuthenticated: boolean;
 }
+
+/** AppSync Lambda GraphQL event */
+export interface GraphQLEvent<TArguments = Record<string, unknown>> {
+  arguments: TArguments;
+  fieldName: string;
+  identity?: AppSyncIdentityCognito;
+  source?: unknown;
+  request?: AppSyncRequestContext;
+  prev?: { result: unknown } | null;
+}

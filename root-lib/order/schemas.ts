@@ -33,8 +33,8 @@ export const OrderSchema = z.object({
   total: z.number().nonnegative('Total must be non-negative'),
   shippingAddress: z.string().min(1, 'Shipping address is required').max(500),
   items: z.array(OrderItemSchema).min(1, 'Order must have at least one item'),
-  createdAt: z.string().datetime('Created date must be ISO 8601 datetime'),
-  updatedAt: z.string().datetime('Updated date must be ISO 8601 datetime'),
+  createdAt: z.iso.datetime('Created date must be ISO 8601 datetime'),
+  updatedAt: z.iso.datetime('Updated date must be ISO 8601 datetime'),
 });
 
 /** OrdersData schema for paginated/listed results */

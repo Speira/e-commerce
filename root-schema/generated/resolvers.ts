@@ -245,12 +245,13 @@ export type OrderResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type OrderStatus =
-  | 'CANCELLED'
-  | 'DELIVERED'
-  | 'PENDING'
-  | 'PROCESSING'
-  | 'SHIPPED';
+export enum OrderStatus {
+  Cancelled = 'CANCELLED',
+  Delivered = 'DELIVERED',
+  Pending = 'PENDING',
+  Processing = 'PROCESSING',
+  Shipped = 'SHIPPED',
+}
 
 export type OrdersData = {
   __typename?: 'OrdersData';
@@ -462,7 +463,11 @@ export type UserResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type UserRole = 'ADMIN' | 'CUSTOMER' | 'MANAGER';
+export enum UserRole {
+  Admin = 'ADMIN',
+  Customer = 'CUSTOMER',
+  Manager = 'MANAGER',
+}
 
 export type UsersData = {
   __typename?: 'UsersData';

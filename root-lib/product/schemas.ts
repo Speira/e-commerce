@@ -7,15 +7,15 @@ import { z } from 'zod';
 export type { Product, ProductsData };
 
 export const ProductSchema = z.object({
-  id: z.string().uuid('Product ID must be a valid UUID'),
+  id: z.uuid('Product ID must be a valid UUID'),
   name: z.string().min(1, 'Product name is required').max(255),
   description: z.string().max(1000).optional().nullable(),
   price: z.number().nonnegative('Price must be non-negative'),
   stock: z.number().int().nonnegative('Stock must be a non-negative integer'),
   category: z.string().max(100).optional().nullable(),
-  imageUrl: z.string().url('Image URL must be valid').optional().nullable(),
-  createdAt: z.string().datetime('Created date must be ISO 8601 datetime'),
-  updatedAt: z.string().datetime('Updated date must be ISO 8601 datetime'),
+  imageUrl: z.url('Image URL must be valid').optional().nullable(),
+  createdAt: z.iso.datetime('Created date must be ISO 8601 datetime'),
+  updatedAt: z.iso.datetime('Updated date must be ISO 8601 datetime'),
 });
 
 export const ProductsDataSchema = z.object({

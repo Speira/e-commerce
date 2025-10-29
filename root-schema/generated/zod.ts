@@ -1,34 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { z } from 'zod';
+import { z } from 'zod'
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T,
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  AWSDateTime: { input: any; output: any };
-  AWSJSON: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  AWSDateTime: { input: any; output: any; }
+  AWSJSON: { input: any; output: any; }
 };
 
 export type AddToCartInput = {
@@ -120,71 +107,87 @@ export type Mutation = {
   updateUser: UserResponse;
 };
 
+
 export type MutationAddToCartArgs = {
   input: AddToCartInput;
   userId: Scalars['ID']['input'];
 };
 
+
 export type MutationClearCartArgs = {
   userId: Scalars['ID']['input'];
 };
+
 
 export type MutationCreateOrderArgs = {
   input: CreateOrderInput;
 };
 
+
 export type MutationCreateProductArgs = {
   input: CreateProductInput;
 };
+
 
 export type MutationCreateReviewArgs = {
   input: CreateReviewInput;
   userId: Scalars['ID']['input'];
 };
 
+
 export type MutationCreateUserArgs = {
   input: CreateUserInput;
 };
+
 
 export type MutationDeleteOrderArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationDeleteProductArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationDeleteReviewArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationDeleteUserArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type MutationRemoveFromCartArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationUpdateCartItemArgs = {
   id: Scalars['ID']['input'];
   input: UpdateCartItemInput;
 };
 
+
 export type MutationUpdateOrderArgs = {
   id: Scalars['ID']['input'];
   input: UpdateOrderInput;
 };
+
 
 export type MutationUpdateProductArgs = {
   id: Scalars['ID']['input'];
   input: UpdateProductInput;
 };
 
+
 export type MutationUpdateReviewArgs = {
   id: Scalars['ID']['input'];
   input: UpdateReviewInput;
 };
+
 
 export type MutationUpdateUserArgs = {
   id: Scalars['ID']['input'];
@@ -226,12 +229,13 @@ export type OrderResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type OrderStatus =
-  | 'CANCELLED'
-  | 'DELIVERED'
-  | 'PENDING'
-  | 'PROCESSING'
-  | 'SHIPPED';
+export enum OrderStatus {
+  Cancelled = 'CANCELLED',
+  Delivered = 'DELIVERED',
+  Pending = 'PENDING',
+  Processing = 'PROCESSING',
+  Shipped = 'SHIPPED'
+}
 
 export type OrdersData = {
   __typename?: 'OrdersData';
@@ -310,17 +314,21 @@ export type Query = {
   userReviews: ReviewsResponse;
 };
 
+
 export type QueryCartItemArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryCartItemsArgs = {
   userId: Scalars['ID']['input'];
 };
 
+
 export type QueryGetOrderArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryGetOrdersByUserArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -328,36 +336,44 @@ export type QueryGetOrdersByUserArgs = {
   userId: Scalars['ID']['input'];
 };
 
+
 export type QueryGetProductArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type QueryGetUserArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryListOrdersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   nextToken?: InputMaybe<Scalars['String']['input']>;
 };
 
+
 export type QueryListProductsArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   nextToken?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 export type QueryListUsersArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   nextToken?: InputMaybe<Scalars['String']['input']>;
 };
 
+
 export type QueryProductReviewsArgs = {
   productId: Scalars['ID']['input'];
 };
 
+
 export type QueryReviewArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type QueryUserReviewsArgs = {
   userId: Scalars['ID']['input'];
@@ -443,7 +459,11 @@ export type UserResponse = {
   success: Scalars['Boolean']['output'];
 };
 
-export type UserRole = 'ADMIN' | 'CUSTOMER' | 'MANAGER';
+export enum UserRole {
+  Admin = 'ADMIN',
+  Customer = 'CUSTOMER',
+  Manager = 'MANAGER'
+}
 
 export type UsersData = {
   __typename?: 'UsersData';
@@ -459,100 +479,92 @@ export type UsersResponse = {
   success: Scalars['Boolean']['output'];
 };
 
+
 type Properties<T> = Required<{
   [K in keyof T]: z.ZodType<T[K], any, T[K]>;
 }>;
 
 type definedNonNullAny = {};
 
-export const isDefinedNonNullAny = (v: any): v is definedNonNullAny =>
-  v !== undefined && v !== null;
+export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null;
 
-export const definedNonNullAnySchema = z
-  .any()
-  .refine((v) => isDefinedNonNullAny(v));
+export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 
-export const OrderStatusSchema = z.enum([
-  'CANCELLED',
-  'DELIVERED',
-  'PENDING',
-  'PROCESSING',
-  'SHIPPED',
-]);
+export const OrderStatusSchema = z.enum(OrderStatus);
 
-export const UserRoleSchema = z.enum(['ADMIN', 'CUSTOMER', 'MANAGER']);
+export const UserRoleSchema = z.enum(UserRole);
 
 export const UpdateReviewInputSchema = z.object({
-  comment: z.string().nullish(),
-  rating: z.number().nullish(),
+    comment: z.string().nullish(),
+    rating: z.number().nullish()
 });
 
 export const UpdateProductInputSchema = z.object({
-  category: z.string().nullish(),
-  description: z.string().nullish(),
-  imageUrl: z.string().nullish(),
-  name: z.string().nullish(),
-  price: z.number().nullish(),
-  stock: z.number().nullish(),
+    category: z.string().nullish(),
+    description: z.string().nullish(),
+    imageUrl: z.string().nullish(),
+    name: z.string().nullish(),
+    price: z.number().nullish(),
+    stock: z.number().nullish()
 });
 
 export const UpdateCartItemInputSchema = z.object({
-  quantity: z.number(),
+    quantity: z.number()
 });
 
 export const UpdateOrderInputSchema = z.object({
-  shippingAddress: z.string().nullish(),
-  status: OrderStatusSchema.nullish(),
+    shippingAddress: z.string().nullish(),
+    status: OrderStatusSchema.nullish()
 });
 
 export const OrderItemInputSchema = z.object({
-  productId: z.string(),
-  quantity: z.number(),
+    productId: z.string(),
+    quantity: z.number()
 });
 
 export const UpdateUserInputSchema = z.object({
-  address: z.string().nullish(),
-  email: z.string().nullish(),
-  firstName: z.string().nullish(),
-  isActive: z.boolean().nullish(),
-  lastName: z.string().nullish(),
-  phone: z.string().nullish(),
-  role: UserRoleSchema.nullish(),
+    address: z.string().nullish(),
+    email: z.string().nullish(),
+    firstName: z.string().nullish(),
+    isActive: z.boolean().nullish(),
+    lastName: z.string().nullish(),
+    phone: z.string().nullish(),
+    role: UserRoleSchema.nullish()
 });
 
 export const CreateUserInputSchema = z.object({
-  address: z.string().nullish(),
-  email: z.string(),
-  firstName: z.string(),
-  isActive: z.boolean().nullish(),
-  lastName: z.string(),
-  phone: z.string().nullish(),
-  role: UserRoleSchema.nullish(),
+    address: z.string().nullish(),
+    email: z.string(),
+    firstName: z.string(),
+    isActive: z.boolean().nullish(),
+    lastName: z.string(),
+    phone: z.string().nullish(),
+    role: UserRoleSchema.nullish()
 });
 
 export const CreateReviewInputSchema = z.object({
-  comment: z.string().nullish(),
-  productId: z.string(),
-  rating: z.number(),
+    comment: z.string().nullish(),
+    productId: z.string(),
+    rating: z.number()
 });
 
 export const CreateProductInputSchema = z.object({
-  category: z.string().nullish(),
-  description: z.string().nullish(),
-  imageUrl: z.string().nullish(),
-  name: z.string(),
-  price: z.number(),
-  stock: z.number().nullish(),
+    category: z.string().nullish(),
+    description: z.string().nullish(),
+    imageUrl: z.string().nullish(),
+    name: z.string(),
+    price: z.number(),
+    stock: z.number().nullish()
 });
 
 export const CreateOrderInputSchema = z.object({
-  idempotencyKey: z.string(),
-  items: z.array(z.lazy(() => OrderItemInputSchema)),
-  shippingAddress: z.string(),
-  userId: z.string(),
+    idempotencyKey: z.string(),
+    items: z.array(z.lazy(() => OrderItemInputSchema)),
+    shippingAddress: z.string(),
+    userId: z.string()
 });
 
 export const AddToCartInputSchema = z.object({
-  productId: z.string(),
-  quantity: z.number(),
+    productId: z.string(),
+    quantity: z.number()
 });

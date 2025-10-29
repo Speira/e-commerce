@@ -11,7 +11,7 @@ generates:
     config:
       useTypeImports: true
       skipTypename: false
-      enumsAsTypes: true
+      enumsAsTypes: false
       maybeValue: 'T | null'
       scalars:
         AWSDateTime: string
@@ -30,7 +30,7 @@ generates:
     config:
       useTypeImports: true
       skipTypename: false
-      enumsAsTypes: true
+      enumsAsTypes: false
       contextType: ../baseSchema#GraphQLContext
       avoidOptionals:
         inputValue: false
@@ -57,7 +57,7 @@ generates:
           content: /* eslint-disable @typescript-eslint/no-explicit-any */
     config:
       schema: zod
-      enumsAsTypes: true
+      enumsAsTypes: false
       useTypeImports: true
       withObjectType: false
       validationSchemaExportType: const

@@ -20,9 +20,10 @@ export type {
 // Export Zod schemas
 export * from './zod';
 
-// Export base context type
+// Export base context and event types
 export type {
   AppSyncIdentityCognito,
   AppSyncRequestContext,
   GraphQLContext,
+  GraphQLEvent,
 } from '../baseSchema';

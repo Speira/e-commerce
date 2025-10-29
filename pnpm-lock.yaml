@@ -87,6 +87,15 @@ importers:
 
   root-infra/cdk/lambda/functions/orders:
     dependencies:
+      '@speira/e-commerce-layer-nodejs':
+        specifier: workspace:*
+        version: link:../../layers/nodejs
+      '@speira/e-commerce-lib':
+        specifier: workspace:*
+        version: link:../../../../../root-lib
+      '@speira/e-commerce-schema':
+        specifier: workspace:*
+        version: link:../../../../../root-schema
       aws-sdk:
         specifier: ^2.1531.0
         version: 2.1692.0
@@ -130,6 +139,15 @@ importers:
 
   root-infra/cdk/lambda/functions/products:
     dependencies:
+      '@speira/e-commerce-layer-nodejs':
+        specifier: workspace:*
+        version: link:../../layers/nodejs
+      '@speira/e-commerce-lib':
+        specifier: workspace:*
+        version: link:../../../../../root-lib
+      '@speira/e-commerce-schema':
+        specifier: workspace:*
+        version: link:../../../../../root-schema
       aws-sdk:
         specifier: ^2.1531.0
         version: 2.1692.0
@@ -167,6 +185,15 @@ importers:
 
   root-infra/cdk/lambda/functions/users:
     dependencies:
+      '@speira/e-commerce-layer-nodejs':
+        specifier: workspace:*
+        version: link:../../layers/nodejs
+      '@speira/e-commerce-lib':
+        specifier: workspace:*
+        version: link:../../../../../root-lib
+      '@speira/e-commerce-schema':
+        specifier: workspace:*
+        version: link:../../../../../root-schema
       aws-sdk:
         specifier: ^2.1531.0
         version: 2.1692.0
